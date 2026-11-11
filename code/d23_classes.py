@@ -134,6 +134,7 @@ say("q0 = 3 checks (represented m in the sample): 3||m: %d cases, %d not represe
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+plt.rcParams.update({"pdf.fonttype": 42, "ps.fonttype": 42, "mathtext.fontset": "cm"})
 fig, ax = plt.subplots(1, 2, figsize=(10, 3.8))
 lab = [r"$\Omega=1$", r"$\Omega=2$", r"$\Omega=3$", r"$\Omega\geq4$"]
 x = np.arange(4); wdt = 0.26

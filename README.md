@@ -16,10 +16,16 @@ Contents:
   - Theorem 1.1: Bombieri–Vinogradov with rational moduli up to x^{1/2}(log x)^{-B}, for the primes represented by one form.
   - Lemma 2.1: covering in the class group.
   - Lemma 4.1 and Proposition 4.2: the normalised sieve criterion.
-  - Theorems 1.2 and 1.3: the explicit values of r.
+  - Theorems 1.2–1.4 and Corollary 1.5: the explicit values of r.
+    - h = 1 gives P_9.
+    - Idoneal D give P_9 (or P_{9+a}).
+    - D = 23 gives the table.
+    - Every prime D = 3 mod 4 gives r <= 125 eps h + h - 1.
+  - Proposition 4.3: every switching loss L is absorbed, with r_0(L) << L log 2L.
 - `code/semilinear_sieve.py`: semi-linear sieve functions, vector sieve, switching, Richert weights; computes
   r_0(L) = 9, 12, 19 for the losses L = 1, 3/2, 3, and draws Figure 1 (about 3 minutes).
 - `code/check_richert_grid.py`: grid convergence of the Richert integral.
+- `code/prop43.py`: checks Proposition 4.3 (explicit r_0(L) for every L).
 - `code/d23_classes.py`: D = 23 checks of the covering lemma (all m <= 1.1e6) and class-pair counts, and Figure 2.
 - `results/`, `figures/`: outputs.
 

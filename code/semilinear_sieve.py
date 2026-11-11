@@ -161,20 +161,24 @@ if __name__ == "__main__":
                 % (r, b["M"], b["main"], b["T"], b["eta"], b["th"], b["u0"], 1 / b["lam"], b["s"][0], b["s"][1],
                    "OK" if b["M"] > 0 else ""))
         rmin = min([r for r, M, _, _ in curves[L] if M > 0])
-        say("  => smallest r for L = %.1f: %d" % (L, rmin))
+        rsafe = min([r for r, M, mn, _ in curves[L] if M > 0.05 * mn])
+        say("  => L = %.1f: smallest r with margin > 0: %d; smallest r with margin > 5%% of main: %d (= r_0(L) in the paper)"
+            % (L, rmin, rsafe))
     np.save(os.path.join(RES, "semilinear_curves.npy"), {str(k): v for k, v in curves.items()}, allow_pickle=True)
 
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+    plt.rcParams.update({"pdf.fonttype": 42, "ps.fonttype": 42, "mathtext.fontset": "cm"})
     fig, ax = plt.subplots(1, 2, figsize=(10, 3.8))
     cols = {1.0: "C0", 1.5: "C1", 3.0: "C3"}
     for L, data in curves.items():
         rr = [d[0] for d in data]; MM = [d[1] / d[2] for d in data]
         ax[0].plot(rr, MM, "o-", color=cols[L], label=r"$L=%g$" % L)
-        rmin = min([d[0] for d in data if d[1] > 0])
-        ax[0].annotate(r"$r=%d$" % rmin, (rmin, [d[1] / d[2] for d in data if d[0] == rmin][0]),
-                       textcoords="offset points", xytext=(4, -14), color=cols[L], fontsize=9)
+        rmin = min([d[0] for d in data if d[1] > 0.05 * d[2]])
+        off = {1.0: (-38, 8), 1.5: (8, -16), 3.0: (8, -16)}[L]
+        ax[0].annotate(r"$r_0=%d$" % rmin, (rmin, [d[1] / d[2] for d in data if d[0] == rmin][0]),
+                       textcoords="offset points", xytext=off, color=cols[L], fontsize=10)
     ax[0].axhline(0, color="k", lw=0.8)
     ax[0].set_xlabel(r"$r$"); ax[0].set_ylabel(r"(main $-$ switched)/main")
     ax[0].set_title("Richert-weighted margin"); ax[0].legend(frameon=False)

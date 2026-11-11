@@ -30,7 +30,7 @@
 
 \begin{document}
 \begin{abstract}
-Parts~X--XII proved that every large $N$ is $Q_{C'}(u,v)+Q_C(x,y)$ with $Q_{C'}(u,v)$ prime and $\Omega(Q_C(x,y))\le r$. There $r$ is an absolute constant that was never computed: it comes from a sieve of level $N^{\theta_0}$, and $\theta_0$ comes from an unspecified power saving of Assing--Blomer--Li. Moreover the class $C'$ of the prime could be prescribed only for idoneal $D$. Here we replace the weighted count by Iwaniec's half-dimensional sieve. The condition ``$m$ is a norm from $\Q(\sqrt{-D})$'' is detected by sifting out the inert primes. A congruence on $p$ makes $\chi_{-D}(N-p)=1$, and this forces the inert primes to occur in pairs. So only the Bombieri--Vinogradov level $N^{1/2}$ is needed, for the primes $p$, and no weighted sum along $N-p$. We combine two semi-linear sieves (split primes and inert primes) in a vector sieve, remove the pairs of large inert primes by Chen's switching, and add Richert's weights. The resulting first-order sieve inequality is optimized numerically. For $h(-D)=1$ (nine fields) and every large even admissible $N$ we obtain $N=Q(u,v)_{\rm prime}+Q(x,y)_{P_9}$. For $D=23$ ($h=3$) we prescribe both classes: Theorem~\ref{thm:d23} gives $r(C',C)\in\{10,11,13,14,20,21\}$ for all class pairs. The two new inputs are as follows. (i) A Bombieri--Vinogradov theorem, with rational moduli up to $x^{1/2}(\log x)^{-B}$, for the primes represented by a single form $Q_{C'}$. It is proved with Hecke characters $\psi\cdot(\xi\circ{\rm N})$, the classical large sieve, and the convexity bound. (ii) A covering lemma in the class group. If a fixed split prime $q_0$ in a non-principal class divides $m$ exactly to the power $1$ (resp.\ $2$), then $m$ is represented by the non-principal forms (resp.\ by all forms) as soon as all other prime factors of $m$ split. This is a congruence on $p$, so no bad set has to be removed. Obstacle~(1b) of Part~XI is not solved but absorbed: the switched term cannot keep the class of the prime, which costs a factor $L_{C'}\in\{1,\frac32,3\}$; the sieve pays for it with a larger $r$. The numerics check the covering lemma for all $m\le1.1\cdot10^6$ (no failure) and the class-pair counts for $D=23$ near $N=10^6$.
+Parts~X--XII proved that every large $N$ is $Q_{C'}(u,v)+Q_C(x,y)$ with $Q_{C'}(u,v)$ prime and $\Omega(Q_C(x,y))\le r$. There $r$ is an absolute constant that was never computed: it comes from a sieve of level $N^{\theta_0}$, and $\theta_0$ comes from an unspecified power saving of Assing--Blomer--Li. Moreover the class $C'$ of the prime could be prescribed only for idoneal $D$. Here we replace the weighted count by Iwaniec's half-dimensional sieve. The condition ``$m$ is a norm from $\Q(\sqrt{-D})$'' is detected by sifting out the inert primes. A congruence on $p$ makes $\chi_{-D}(N-p)=1$, and this forces the inert primes to occur in pairs. So only the Bombieri--Vinogradov level $N^{1/2}$ is needed, for the primes $p$, and no weighted sum along $N-p$. We combine two semi-linear sieves (split primes and inert primes) in a vector sieve, remove the pairs of large inert primes by Chen's switching, and add Richert's weights. The resulting first-order sieve inequality is optimized numerically. For $h(-D)=1$ (nine fields) and every large even admissible $N$ we obtain $N=Q(u,v)_{\rm prime}+Q(x,y)_{P_9}$. The same holds for every idoneal discriminant of Part~XII and every pair $(C',C)$ with $(N-b,D)=1$, with $P_9$ or $P_{9+a}$ where $2^a\parallel N-p$. For $D=23$ ($h=3$) we prescribe both classes: Theorem~\ref{thm:d23} gives $r(C',C)\in\{10,11,13,14,20,21\}$ for all class pairs. An elementary bound for the switched term shows that every switching loss can be absorbed (Proposition~\ref{prop:allL}). So for every prime $D\equiv3\pmod4$ and every pair $(C',C)$ we get an explicit $r(C',C)\le 125\epsilon_{C'}h+h-1$ when $h\le10^7$, and $r(C',C)\ll h\log h$ in general (Corollary~\ref{cor:allD}). The two new inputs are as follows. (i) A Bombieri--Vinogradov theorem, with rational moduli up to $x^{1/2}(\log x)^{-B}$, for the primes represented by a single form $Q_{C'}$. It is proved with Hecke characters $\psi\cdot(\xi\circ{\rm N})$, the classical large sieve, and the convexity bound. (ii) A covering lemma in the class group. If a fixed split prime $q_0$ in a non-principal class divides $m$ exactly to the power $1$ (resp.\ $2$), then $m$ is represented by the non-principal forms (resp.\ by all forms) as soon as all other prime factors of $m$ split. This is a congruence on $p$, so no bad set has to be removed. Obstacle~(1b) of Part~XI is not solved but absorbed: the switched term cannot keep the class of the prime, which costs a factor $L_{C'}\in\{1,\frac32,3\}$; the sieve pays for it with a larger $r$. The numerics check the covering lemma for all $m\le1.1\cdot10^6$ (no failure) and the class-pair counts for $D=23$ near $N=10^6$.
 \end{abstract}
 \maketitle
 
@@ -71,6 +71,19 @@ r_0(1)=9,\qquad r_0(\tfrac32)=12,\qquad r_0(3)=19 .
 Let $D\in\{3,4,7,8,11,19,43,67,163\}$ and $Q$ the form of discriminant $-D$. Let $N$ be large and \emph{admissible}, i.e.\ there is a residue $b$ modulo $8D$ with $b$ represented by $Q$ $D$-adically and $2$-adically, $\chi(N-b)=1$ and $(b(N-b),D)=1$; the precise local conditions are in Section~\ref{sec:sieve}. If $N$ is even, then $N=Q(u,v)+Q(x,y)$ with $Q(u,v)$ prime and $\Omega(Q(x,y))\le9$. If $N$ is odd, the same holds with $\Omega(Q(x,y))\le10$ for $D\in\{4,7,8\}$ and $\le11$ for $D\in\{3,11,19,43,67,163\}$. The same bounds hold with $Q(u,v)$ replaced by an arbitrary prime $p$, i.e.\ for $N=p+Q(x,y)$; in particular every large even $N$ is $p+x^2+y^2$ with $\Omega(x^2+y^2)\le9$.
 \end{theorem}
 
+The idoneal discriminants of Part~XII behave like class number one. There the class of a prime is a congruence, so the switched term keeps it ($L_{C'}=1$). The class of a norm is fixed by its genus characters, so no covering prime $q_0$ is needed.
+
+\begin{theorem}[idoneal discriminants]\label{thm:idoneal}
+Let $-D<-4$ be an idoneal fundamental discriminant (one class per genus, Part~XII), $(C',C)$ a pair of classes, and $M_0={\rm lcm}(D,8)$. Let $N$ be large, and suppose there is a residue $b\bmod M_0$ with the following properties:
+\begin{itemize}[leftmargin=1.5em]
+\item $b$ is a unit in the genus of $C'$, i.e.\ $\chi_{q^*}(b)=e_q(C')$ for all $q\mid D$;
+\item $N-b=2^au$ with $u$ a unit modulo $M_0$ and $(N-b,D)=1$;
+\item $2^au$ lies in the genus of $C$.
+\end{itemize}
+Then there are $\gg_DN(\log N)^{-2}$ representations $N=Q_{C'}(u,v)+Q_C(x,y)$ with $Q_{C'}(u,v)$ prime and $\Omega(Q_C(x,y))\le9+a$. In particular $\Omega\le9$ whenever $N-b$ can be taken odd (e.g.\ $N$ even and $D$ odd).
+\end{theorem}
+The remaining pairs with $A(C',C;N)>0$ in Part~XII are those that force $q\mid N-p$ for some $q\mid D$. They can be treated by also fixing $q^v\parallel N-p$ by a congruence, at the cost of $v$ further prime factors. We do not tabulate them.
+
 \begin{theorem}[$D=23$]\label{thm:d23}
 Let $D=23$, $Q_{C_0}=x^2+xy+6y^2$, $Q_{C_1}=Q_{C_2}=2x^2\pm xy+3y^2$. For every large $N$ with $23\nmid N$ and every pair $(C',C)$ there are $\gg N(\log N)^{-2}$ representations $N=Q_{C'}(u,v)+Q_C(x,y)$ with $Q_{C'}(u,v)$ prime and $\Omega(Q_C(x,y))\le r(C',C)$, where
 \begin{center}
@@ -87,13 +100,23 @@ $C'=C_0$ & $21$ & $20$\\
 The first row holds for every large $N$, with $p$ an arbitrary prime. If $23\mid N$ and $C'$ is prescribed, there is no representation with $23\nmid Q_C(x,y)$, since $\chi(N-p)=-\chi(p)=-1$.
 \end{theorem}
 
-The first row is Part~X's theorem for $D=23$ with an explicit $r$. Part~X's $r$ is of size $\lceil3/\theta\rceil$ with $\theta\le\delta_{\rm ABL}/50$, i.e.\ of order at least $10^5$ (Section~\ref{sec:remarks}). The second and third rows prescribe the class of the prime when $h=3$, which Part~XII could not do.
+For general $D$ the same scheme works with the crude bound of Proposition~\ref{prop:allL} in place of the optimisation.
+
+\begin{corollary}[every prime $D\equiv3\pmod4$]\label{cor:allD}
+Let $D>3$ be a prime $\equiv3\pmod4$, $h=h(-D)$ and $\Cl(-D)\cong\bigoplus_{i=1}^s\Z/n_i$. For every large even $N$ with $D\nmid N$ and every pair $(C',C)$ there are $\gg_DN(\log N)^{-2}$ representations $N=Q_{C'}(u,v)+Q_C(x,y)$ with $Q_{C'}(u,v)$ prime and
+\[
+\Omega(Q_C(x,y))\le r_0\bigl(\tfrac12\epsilon_{C'}h\bigr)+\sum_{i=1}^s(n_i-1),
+\]
+where $r_0(L)\le250L$ for $1\le L\le10^7$ and $r_0(L)\ll L\log 2L$ for all $L\ge1$ (Proposition~\ref{prop:allL}). In particular $r(C',C)\le125\epsilon_{C'}h+h-1\le251h$ for $h\le10^7$. For odd $N$ add $1$ if $2$ splits and $2$ if $2$ is inert.
+\end{corollary}
+
+The first row of Theorem~\ref{thm:d23} is Part~X's theorem for $D=23$ with an explicit $r$. Part~X's $r$ is of size $\lceil3/\theta\rceil$ with $\theta\le\delta_{\rm ABL}/50$, i.e.\ of order at least $10^5$ (Section~\ref{sec:remarks}). The second and third rows prescribe the class of the prime when $h=3$, which Part~XII could not do.
 
 \subsection*{Where the class group enters}
 Three facts are used.
 \begin{enumerate}[leftmargin=2em]
 \item \emph{Parity.} For $m$ prime to $D$, $\chi(m)=(-1)^{\#\{\text{inert prime factors, with multiplicity}\}}$. A congruence on $p$ modulo $D$ fixes $\chi(N-p)=1$. Once the inert primes below $N^\theta$, $\theta>\frac14$, are sifted out, $N-p$ has either no inert factor or exactly two (Section~\ref{sec:sieve}).
-\item \emph{Covering.} Ideals of norm $m$ have classes $\sum_\ell\{(e_\ell-2j)c_\ell:0\le j\le e_\ell\}$, a signed sumset (Lemma~\ref{lem:cover}). For $h=3$ a prime power $q_0^2$ with $q_0$ in a non-principal class covers the whole group. This is the only place where the class $C$ of the almost-prime side enters, and it costs $a(C)\in\{0,1,2\}$ prime factors.
+\item \emph{Covering.} Ideals of norm $m$ have classes $\sum_\ell\{(e_\ell-2j)c_\ell:0\le j\le e_\ell\}$, a signed sumset (Lemma~\ref{lem:cover}). For $h=3$ a prime power $q_0^2$ with $q_0$ in a non-principal class covers the whole group. In general, $\prod_iq_i^{n_i-1}$ with the $q_i$ in generating classes covers the whole group. This is the only place where the class $C$ of the almost-prime side enters, and it costs $a(C)\le h-1$ prime factors ($a(C)\in\{0,1,2\}$ for $h\le3$).
 \item \emph{Hecke characters through the norm.} The class of the prime $p$ is detected by the dihedral forms $\vartheta_\psi$ of Part~V \cite{ChenV}. Twisted by $\xi$ modulo $k$, they become the Hecke characters $\psi\cdot(\xi\circ{\rm N})$, whose $L$-functions are entire and have no real zeros near $1$, because $h$ is odd (Theorem~\ref{thm:bv}).
 \end{enumerate}
 The sieve itself is dimension-free in $D$. With the normalisation of Section~\ref{sec:sieve}, every local factor at $D$, at $2$ and at $q_0$ cancels between the main term and the switched term (Lemma~\ref{lem:norm}). So one optimisation, depending only on $L_{C'}$, serves all $D$.
@@ -115,7 +138,11 @@ and $m$ is represented by $Q_C$ if and only if $\Sigma(m)\cap\{C,C^{-1}\}\ne\emp
 \begin{proof}
 An ideal of norm $m$ is $\prod_\ell\fp_\ell^{j}\bar\fp_\ell^{e_\ell-j}$ times the ideals above the inert and ramified primes, which are principal. Its class is $\sum(2j-e_\ell)c_\ell$. The integer $m$ is represented by $Q_C$ iff it is the norm of an ideal in $C$ or $C^{-1}$ \cite[Thm.~7.7]{Cox}. For (a), $\{\pm c\}+x$ meets $\{c,-c\}$ for every $x\in\Z/3$: for $x=0$ it equals $\{\pm c\}$, and for $x=\pm c$ it contains $\mp c$. For (b), $\{2c,0,-2c\}=\Z/3$.
 \end{proof}
-For $D=23$ the primes $2$ and $3$ split and are not represented by $x^2+xy+6y^2$, so they lie in the non-principal classes. We take $q_0=2$ for odd $N$ and the least non-principal split prime $q_0\nmid N$ (so $q_0\in\{3,13,\dots\}$) for even $N$. The lemma was checked against direct representation counts for all $m\le1.1\cdot10^6$ (Section~\ref{sec:d23}). For a cyclic class group of odd order $h$ the same argument with $q_0$ in a generating class gives all classes from $q_0^{h-1}\parallel m$.
+For $D=23$ the primes $2$ and $3$ split and are not represented by $x^2+xy+6y^2$, so they lie in the non-principal classes. We take $q_0=2$ for odd $N$ and the least non-principal split prime $q_0\nmid N$ (so $q_0\in\{3,13,\dots\}$) for even $N$. The lemma was checked against direct representation counts for all $m\le1.1\cdot10^6$ (Section~\ref{sec:d23}). For a general class group of odd order the same argument gives the following.
+\begin{enumerate}[label=(\alph*),start=3]
+\item Let $\Cl(-D)\cong\bigoplus_{i=1}^s\Z/n_i$ ($n_i$ odd), and let $q_i$ be split primes whose ideal classes $c_i$ generate the $i$-th summand. If $\prod_iq_i^{n_i-1}\parallel m$ and every other prime factor of $m$ is split or ramified, then $m$ is represented by every form. Indeed $\{(n_i-1-2j)c_i:0\le j\le n_i-1\}$ has $n_i$ elements spaced by $2c_i$. Since $n_i$ is odd, $2$ is invertible modulo $n_i$, so these are all of $\langle c_i\rangle$. The sum over $i$ is the whole group, and adding the class of the remaining ideal changes nothing.
+\end{enumerate}
+The cost is $\sum_i(n_i-1)\le h-1$ prime factors; it is $h-1$ for a cyclic group.
 
 \section{Proof of Theorem \texorpdfstring{\ref{thm:bv}}{1.1}}\label{sec:bv}
 For a split $p=\fp\bar\fp$ and a class character $\psi$ let $c_\psi(p)=\psi(\fp)+\psi(\bar\fp)$, and $c_\psi(p)=0$ for inert $p$. Orthogonality gives, for $p\nmid D$,
@@ -144,7 +171,7 @@ Summing over the blocks, the right side of \eqref{eq:bvpsi} is $\ll x(\log x)^{-
 
 \section{The sieve}\label{sec:sieve}
 \subsection{The sequence}
-Fix $D$, the classes $C',C$, and $N$ large. Let $a=a(C)$ and $q_0$ be as follows. If $h=1$: for $N$ even, $a=0$; for $N$ odd, $q_0=2$ and $a=1$ when $2$ is not inert ($D\in\{4,7,8\}$), $a=2$ when $2$ is inert. If $D=23$: $a=1$ for $C\ne C_0$, $a=2$ for $C=C_0$, and $q_0$ is as in Section~\ref{sec:class}. Let $M_0$ be $D$ (resp.\ $8$ for $D=4,8$) times $q_0^{a+1}$, and let $\mathcal R$ be the set of residues $b$ modulo $M_0$ such that
+Fix $D$, the classes $C',C$, and $N$ large. Let $a=a(C)$ and $q_0$ be as follows. If $h=1$: for $N$ even, $a=0$; for $N$ odd, $q_0=2$ and $a=1$ when $2$ is not inert ($D\in\{4,7,8\}$), $a=2$ when $2$ is inert. If $D=23$: $a=1$ for $C\ne C_0$, $a=2$ for $C=C_0$, and $q_0$ is as in Section~\ref{sec:class}. Let $M_0$ be $D$ (resp.\ $8$ for $D=4,8$) times $q_0^{a+1}$. When $a=0$ ($h=1$ and $N$ even) there is no $q_0$, and $M_0=D$ (resp.\ $8$). Everything below, including Lemma~\ref{lem:norm}, holds with $q_0^a=1$. For a general prime $D$ (Corollary~\ref{cor:allD}) $q_0^a$ is replaced by $\prod_iq_i^{n_i-1}$. Here $q_i$ is the least split prime $q_i\nmid N$ in a generating class of the $i$-th summand. Then $q_i\ll_D(\log N)^2$, so the moduli $M_0d$ stay below $N^{1/2}(\log N)^{-B}$ when $d\le N^{1/2}(\log N)^{-B-O(h)}$, and the local factors at the $q_i$ cancel as at $q_0$. Let $\mathcal R$ be the set of residues $b$ modulo $M_0$ such that
 \begin{itemize}[leftmargin=1.5em]
 \item $b$ is a unit and is represented by $Q_{C'}$ locally at $D$ (i.e.\ $\chi(b)=1$; if $p$ is arbitrary, no condition);
 \item $(N-b)/q_0^a$ is a unit modulo $M_0/q_0^{a+1}$ and modulo $q_0$, with $\chi((N-b)/q_0^{a})=1$.
@@ -181,7 +208,7 @@ S(\cA,\cP_1\cup\cP_3)\ge XV_1V_3\,\bigl(\Phi(\eta,\theta)+o(1)\bigr),\label{eq:l
 where $V_i=\prod_{\ell\in\cP_i}(1-g(\ell))$.
 
 \subsection{Switching}
-Every bad survivor $m=n\in\cE$ satisfies $N-q_0^an=p$, prime. As in Chen's switching \cite{Chen73}, we count them with the linear upper bound sieve on $\{N-q_0^an:n\in\cE\}$, sifting all primes $\ell\nmid 2M_0N$ up to $N^{1/2-\e}$. The level of distribution $N^{1/2-\e}$ of $\cE$ in progressions follows from the Bombieri--Vinogradov theorem for convolutions \cite{Motohashi,BFI1}, since $q_1\in[N^\theta,N^{1/2}]$. With $F_{\rm lin}(1)=2e^\gamma$ we get
+Every bad survivor $m=n\in\cE$ satisfies $N-q_0^an=p$, prime. It carries the weight $\Phi(p/N)\log p/\log N=\Phi(1-q_0^an/N)(1+o(1))$, and we give $n\in\cE$ the same smooth weight $\Phi(1-q_0^an/N)$. As in Chen's switching \cite{Chen73}, we count them with the linear upper bound sieve on $\{N-q_0^an:n\in\cE\}$, sifting all primes $\ell\nmid 2M_0N$ up to $N^{1/2-\e}$. The level of distribution $N^{1/2-\e}$ of $\cE$ in progressions follows from the Bombieri--Vinogradov theorem for convolutions \cite{Motohashi,BFI1}, since $q_1\in[N^\theta,N^{1/2}]$. With $F_{\rm lin}(1)=2e^\gamma$ we get
 \begin{equation}\label{eq:switch}
 \#\{\text{bad survivors}\}\le\bigl(2e^{\gamma}+o(1)\bigr)\,|\cE|\,V_{\cE}\bigl(N^{1/2}\bigr) .
 \end{equation}
@@ -218,7 +245,7 @@ Here $2/(\epsilon_{C'}h)$ is the density of $C'$ among the split primes, and $\#
 \[
 |\cE_{\rm adm}|=\frac N{q_0^a\log N}J\cdot\frac{\#\mathcal R}{(q_0-1)\frac{D-1}2}(1+o(1))=2J\,\frac{\#\mathcal R}{\phi(M_0)}\frac N{\log N}(1+o(1))=2L_{C'}J\,X\,(1+o(1)),
 \]
-using $\phi(M_0)=(D-1)q_0^a(q_0-1)$. Multiplying by $2e^\gamma V_\cE(N^{1/2})$ gives the second line. The first line is $X\cdot V_1V_3$.
+using $\phi(M_0)=(D-1)q_0^a(q_0-1)$. Both $X$ and $|\cE_{\rm adm}|$ carry the weight $\Phi(p/N)$, with $p=N-q_0^an$ in the switched term. By partial summation, each therefore contains the same factor $\int_0^1\Phi(u)\,du$, and this factor cancels; we have suppressed it in the displays. Multiplying by $2e^\gamma V_\cE(N^{1/2})$ gives the second line. The first line is $X\cdot V_1V_3$.
 \end{proof}
 
 \begin{proposition}\label{prop:crit}
@@ -237,6 +264,47 @@ A good survivor with $w(m)>0$ has $\Omega(m)<\frac1\lambda+\frac1{u_0}\le r+1$, 
 \end{proof}
 
 Theorems~\ref{thm:h1} and~\ref{thm:d23} follow from the proposition with $r_0(1)=9$, $r_0(\frac32)=12$, $r_0(3)=19$ (Section~\ref{sec:num}) and $\Omega(Q_C(x,y))=a+\Omega(m)$. For $h=1$ and odd $N$ the power of $2$ is fixed by $p\bmod 8$ or $16$: $2\parallel N-p$ if $2$ splits or ramifies, and $4\parallel N-p$ if $2$ is inert.
+
+\emph{Proof of Theorem~\ref{thm:idoneal}.} Take $\mathcal R$ to be the residues $b$ of the theorem, and $q_0^a=2^a$. By Part~XII, $p=Q_{C'}(u,v)$ for a prime $p\nmid D$ iff $p\bmod D$ lies in the genus of $C'$. So $X$ is a sum over primes in residue classes modulo $M_0$, and the classical Bombieri--Vinogradov theorem gives the level $N^{1/2}(\log N)^{-B}$; no cusp form occurs. In the switched term the condition $N-2^an\in\mathcal R$ is again a congruence, and it contains the full condition $p\in C'$. So the computation of Lemma~\ref{lem:norm} gives $|\cE_{\rm adm}|=2JX(1+o(1))$, i.e.\ $L=1$.
+
+In that computation, $n'=q_1q_2r$ is equidistributed modulo $D$ over the units with $\chi(n')=1$, because a product of two primes from the coset $\chi=-1$ is equidistributed over $\ker\chi$. A good survivor $m$ is then a product of split primes, so $2^am$ is the norm of an ideal. Every ideal of norm $2^am$ lies in the genus given by the characters $\chi_{q^*}(2^am)=\chi_{q^*}(N-b)$, which is the genus of $C$, and the genus is the class. So $2^am=Q_C(x,y)$; this is also the pointwise identity $r_C(m)=w\,g(m_{(D)})\mathbf 1[\eta(m)=e(C)]$ of Part~XII \cite[Lemma~2.1]{ChenXII}. Proposition~\ref{prop:crit} with $L=1$ and $r_0(1)=9$ gives the claim. \qed
+
+\subsection{Every loss can be absorbed}
+The values in Table~\ref{tab:r0} come from a numerical optimisation. The following crude choice of parameters needs no optimisation and works for every $L$. It uses the unweighted sieve ($\lambda=0$), for which a survivor with no inert factor has $\Omega(m)<1/\eta$.
+
+\begin{proposition}\label{prop:allL}
+Let $L\ge1$, $\delta=0.08/L$, $\theta=\frac12(1-\delta)$, $s_3=1+\frac\delta2$. Let $s_1\ge2$ satisfy $F(s_1)-f(s_1)\le0.14\sqrt\delta$, and put $\eta=\delta(1+\delta)/(4s_1)$. Then $\eta s_1+\theta s_3=\frac12$ and
+\[
+\frac{e^{-\gamma}\Phi(\eta,\theta)}{\sqrt{\eta\theta}}>8LJ(\eta,\theta).
+\]
+Hence the conclusion of Proposition~\ref{prop:crit} holds with loss $L$ and $\Omega(m)<1/\eta<50Ls_1$. Since $F-f$ is decreasing and $F(5)-f(5)<7.5\cdot10^{-6}$ (Section~\ref{sec:num}), one may take $s_1=5$ for $L\le2.8\cdot10^7$, so $r_0(L)\le250L$ there. Since $F(s)-f(s)\ll e^{-s}$ \cite[Ch.~11]{FI}, one may take $s_1\ll\log2L$ in general, so $r_0(L)\ll L\log 2L$.
+\end{proposition}
+\begin{proof}
+\emph{The level.} $\eta s_1+\theta s_3=\frac{\delta+\delta^2}4+\frac{(1-\delta)(2+\delta)}4=\frac12$. Also $\frac14<\theta<\frac12$ and $\eta<\delta$.
+
+\emph{Upper bound for $J$.} The inner integral $\int_{\theta\le a<(1-w)/2}\frac{da}{a(1-a-w)}$ vanishes unless $w<\delta=1-2\theta$. In that case $a\ge\theta$ and $1-a-w>\frac{1-w}2>\theta$ on the range, which has length $\frac{\delta-w}2$, so the integral is at most $\frac{\delta}{2\theta^2}$. The same bound holds for the term $\int_\theta^{1/2}\frac{da}{a(1-a)}$. Unfolding the recursion,
+\[
+\int_0^\delta P_k(w)\,dw=\frac1{k!}\int_{\substack{t_1,\dots,t_k\ge\eta\\ t_1+\dots+t_k\le\delta}}\frac{dt_1}{t_1}\cdots\frac{dt_k}{t_k}\le\frac1{k!}\Bigl(\log\frac\delta\eta\Bigr)^k .
+\]
+Hence
+\[
+J(\eta,\theta)\le\frac{\delta}{8\theta^2}\sum_{k\ge0}\frac{2^{-k}}{k!}\Bigl(\log\frac\delta\eta\Bigr)^k=\frac{\delta^{3/2}}{8\theta^2\sqrt\eta}.
+\]
+
+\emph{Lower bound for $\Phi$.} We have $\Phi\ge f_1F_3+F_1f_3-F_1F_3=F_1f_3-F_3(F_1-f_1)\ge f_1f_3-F_3(F_1-f_1)$, writing $f_i=f(s_i)$, $F_i=F(s_i)$. Here:
+\begin{itemize}[leftmargin=1.5em]
+\item $f_1\ge f(2)>0.938$;
+\item $F_3=2e^{\gamma/2}(\pi s_3)^{-1/2}\le1.506$;
+\item by the closed form and ${\rm arsinh}\,y\ge y/\sqrt{1+y^2}$, $f_3\ge2e^{\gamma/2}\pi^{-1/2}\sqrt{s_3-1}/s_3\ge1.02\sqrt\delta$, since $\delta\le0.08$.
+\end{itemize}
+So $\Phi\ge(0.938\cdot1.02-1.506\cdot0.14)\sqrt\delta>0.745\sqrt\delta$, and the main term is $>0.418\sqrt\delta/\sqrt{\eta\theta}$.
+
+\emph{Comparison.} The inequality follows from $0.418\,\theta^{3/2}>L\delta=0.08$, which holds since $\theta\ge0.46$. Finally $1/\eta<4s_1/\delta=50Ls_1$.
+\end{proof}
+
+The two powers $\eta^{-1/2}$ cancel exactly. Both the main term and the switched term are governed by the number of split prime factors $\ge N^\eta$, through $V_1$ and $\sum_k2^{-k}(\log\frac\delta\eta)^k/k!$ respectively. The switched term is small because the two inert primes leave only the room $\delta=1-2\theta$ for the split part. So the loss $L$ is paid for by $\delta\asymp1/L$, i.e.\ by sifting the inert primes almost up to $N^{1/2}$. The optimised parameters show the same law: in Table~\ref{tab:r0}, $L(1-2\theta)=0.210$ for all three values of $L$.
+
+\emph{Proof of Corollary~\ref{cor:allD}.} Since $D$ is prime, $h$ is odd and Theorem~\ref{thm:bv} applies. For $D\ge7$ and $D\nmid N$ there are residues $b$ with $\chi(b)=\chi(N-b)=1$: by a Jacobi sum count their number is exactly $(D-1-2\chi(N))/4\ge(D-3)/4>0$. With $q_0^a$ replaced by $\prod_iq_i^{n_i-1}$, Lemma~\ref{lem:cover}(c) gives the representation by $Q_C$, and Lemma~\ref{lem:norm} holds verbatim. Proposition~\ref{prop:allL} with $L=L_{C'}=\frac12\epsilon_{C'}h\le h$ gives the bound. For odd $N$ the power of $2$ is fixed by a congruence as in Theorem~\ref{thm:h1}. If $2$ splits, its class only shifts the covered set, which is already the whole group. \qed
 
 \section{Numerics: the values of \texorpdfstring{$r_0(L)$}{r0(L)}}\label{sec:num}
 The script \texttt{code/semilinear\_sieve.py} computes $f$, $F$, $\Phi$, $G$ and $J$ on grids. The sieve functions use step $10^{-4}$, closed forms on $[1,3]$ and $(0,2]$, and the delay equations beyond. It then maximises $\mathcal M$ over $\eta$, $\theta$ (step $0.005$), $u_0$ (300 values) and $s_1$ (step $0.005$).
@@ -262,7 +330,28 @@ $3$ & $19$ & $0.002$ & $0.465$ & $0.219$ & $15.43$ & $(3.31,1.06)$ & $3.18$ & $2
 \label{tab:r0}
 \end{table}
 
-Without Richert's weights ($\lambda=0$, $\Omega(m)<1/\eta$) the same computation gives $r=25$ for $L=1$. The relative margins $\mathcal M/\text{main}$ at $r_0(L)$ are $8.8\%$, $8.4\%$ and $7.1\%$.
+Without Richert's weights ($\lambda=0$, $\Omega(m)<1/\eta$) the same computation gives $r=25$ for $L=1$.
+
+The script \texttt{code/prop43.py} checks Proposition~\ref{prop:allL}. On $(0,39]$ the function $F$ never falls below $1$, and $F(s)-f(s)$ is decreasing, with values
+\begin{itemize}[leftmargin=1.5em]
+\item $0.126$ at $s=2$,
+\item $7.1\cdot10^{-3}$ at $s=3$,
+\item $2.7\cdot10^{-4}$ at $s=4$,
+\item $7.5\cdot10^{-6}$ at $s=5$,
+\item $1.3\cdot10^{-7}$ at $s=6$.
+\end{itemize}
+With the least admissible $s_1$ on a grid of step $0.01$, the proposition gives the bounds
+\begin{center}
+\begin{tabular}{rrrrrrrrr}
+\toprule
+$L$ & $1$ & $1.5$ & $3$ & $10$ & $30$ & $100$ & $10^3$ & $10^5$\\
+\midrule
+$s_1$ & $2.43$ & $2.51$ & $2.63$ & $2.83$ & $3.00$ & $3.20$ & $3.55$ & $4.23$\\
+$r_0(L)\le$ & $112$ & $178$ & $384$ & $1403$ & $4488$ & $15987$ & $177485$ & $2.1\cdot10^7$\\
+\bottomrule
+\end{tabular}
+\end{center}
+These are far above the optimised values $9,12,19$, but they hold for every $L$. For $L\le100$ the script also evaluates $J$ itself at these parameters. The switched term $8LJ$ is then about $0.6$--$0.7$, against the bound $\approx1.1$ and the main term $\approx2.1$--$2.4$. The relative margins $\mathcal M/\text{main}$ at $r_0(L)$ are $8.8\%$, $8.4\%$ and $7.1\%$.
 
 Every discretisation errs on the safe side. $\Phi$ is a maximum over a grid and $G$ a minimum over a grid. $J$ decreases under refinement (midpoint sums). The Richert integral, on a geometric grid of $240$ points, increases the margin under refinement: at the three optima the margins for $120,240,480,960$ points agree to $3\cdot10^{-4}$ (\texttt{code/check\_richert\_grid.py}).
 
@@ -285,11 +374,11 @@ For every even $N\in[10^6,10^6+400)$ with $23\nmid N$ (192 values), the numbers 
 
 \section{Remarks}\label{sec:remarks}
 \begin{remark}[Obstacle (1b)]
-The class of the prime is detected only in the main term, through Theorem~\ref{thm:bv}. In the switched term it is replaced by the genus condition, with the loss $L_{C'}$. As $\eta\to0$ the main term grows like $\eta^{-1/2}$ and the switched term more slowly. In trial computations without weights the ratio of the two reached $3.2$, $6.0$ and $14.5$ at $\eta=0.01$, $0.005$ and $0.002$. This suggests that every finite $L$ is absorbed for $r$ large enough. If so, then for any prime $D\equiv3\pmod4$ with cyclic class group every pair $(C',C)$ has $r(C',C)\le r_0(\frac12\epsilon_{C'}h)+h-1$, by Lemma~\ref{lem:cover} with $q_0$ in a generating class. We have computed $r_0(L)$ only for $L\le3$. In no case does the method detect prime ideals in a class along a thin set; that remains open.
+The class of the prime is detected only in the main term, through Theorem~\ref{thm:bv}. In the switched term it is replaced by the genus condition, with the loss $L_{C'}=\frac12\epsilon_{C'}h$. Proposition~\ref{prop:allL} shows that every finite loss is absorbed: sift the inert primes up to $N^{(1-\delta)/2}$ with $\delta\asymp1/L$. This gives Corollary~\ref{cor:allD} for every prime $D\equiv3\pmod4$ and every pair $(C',C)$, with $r\ll h\log h$. The method never detects prime ideals in a class along a thin set; that problem (obstacle (1b) proper) remains open. What has changed is that, for the existence question, it no longer needs to be solved.
 \end{remark}
 
 \begin{remark}[Relation to Parts~X--XII]
-The existence statements of Parts~X (for the genus and for $D=23$), XI and XII follow from Theorems~\ref{thm:h1} and~\ref{thm:d23}, or from the same method, with explicit $r$. In Part~X the level was $N^{\theta_0}$ with $\theta_0=\delta/50$, and $\delta$ (from \cite[Prop.~4.1]{ABL}) is not explicit, so $r=\lceil3/\theta\rceil+2E$ was at least of order $10^5$. What the half-dimensional sieve does not give is the asymptotic formula for the weighted counts $\sum_pr_C(N-p)$ along sifted $N-p$, with its local factors. That formula is the content of Parts~VII, IX and~X; for instance, the $199$ exact zeros of Part~XII are statements about it. The two methods answer different questions: the half-dimensional sieve gives existence with small $r$, the spectral method gives the distribution.
+The existence statements of Parts~X (for the genus and for $D=23$), XI and XII follow from Theorems~\ref{thm:h1}, \ref{thm:idoneal} and~\ref{thm:d23}, or from the same method, with explicit $r$. For Part~XII this needs the pairs with $(N-b,D)=1$; the others need the extra congruence noted after Theorem~\ref{thm:idoneal}. In Part~X the level was $N^{\theta_0}$ with $\theta_0=\delta/50$, and $\delta$ (from \cite[Prop.~4.1]{ABL}) is not explicit, so $r=\lceil3/\theta\rceil+2E$ was at least of order $10^5$. What the half-dimensional sieve does not give is the asymptotic formula for the weighted counts $\sum_pr_C(N-p)$ along sifted $N-p$, with its local factors. That formula is the content of Parts~VII, IX and~X; for instance, the $199$ exact zeros of Part~XII are statements about it. The two methods answer different questions: the half-dimensional sieve gives existence with small $r$, the spectral method gives the distribution.
 \end{remark}
 
 \begin{remark}[What is not covered]
@@ -312,7 +401,7 @@ The sieve inequality is optimized numerically at first order, as in Chen-type nu
 
 \clearpage
 \section*{Data and code}
-{\raggedright \texttt{code/semilinear\_sieve.py} (Section~\ref{sec:num}; output \texttt{results/semilinear\_sieve.txt}, \texttt{figures/sieve\_margin.pdf}) and \texttt{code/d23\_classes.py} (Section~\ref{sec:d23}; output \texttt{results/d23\_classes.txt}, \texttt{figures/d23\_classes.pdf}).\par}
+{\raggedright \texttt{code/semilinear\_sieve.py} (Section~\ref{sec:num}; output \texttt{results/semilinear\_sieve.txt}, \texttt{figures/sieve\_margin.pdf}), \texttt{code/check\_richert\_grid.py} and \texttt{code/prop43.py} (Section~\ref{sec:num}; output \texttt{results/prop43.txt}), and \texttt{code/d23\_classes.py} (Section~\ref{sec:d23}; output \texttt{results/d23\_classes.txt}, \texttt{figures/d23\_classes.pdf}).\par}
 
 \begin{thebibliography}{99}
 \bibitem{ABL} E. Assing, V. Blomer, J. Li, Uniform Titchmarsh divisor problems, arXiv:2005.13915 (2020).
