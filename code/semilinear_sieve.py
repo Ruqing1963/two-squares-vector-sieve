@@ -98,23 +98,58 @@ def G(t, eta, th):
         best = min(best, ff(s1)[1] * ff(s3)[1])
     return best
 
+def Jparts(eta, th, hw):
+    """J split by k: J_lam = 1/4 [t0 + sum_k sum_w terms_k(w) max(0, 1 - lam (k - w/u0))]."""
+    a = np.arange(th, 0.5, hw) + hw / 2
+    t0 = np.sum(1.0 / (a * (1 - a))) * hw
+    W = np.arange(hw / 2, 1 - 2 * th, hw)
+    inner = np.zeros_like(W)
+    for i, w in enumerate(W):
+        amax = (1 - w) / 2
+        if amax <= th: continue
+        aa = np.arange(th, amax, hw / 4) + hw / 8
+        inner[i] = np.sum(1.0 / (aa * (1 - aa - w))) * hw / 4
+    terms = []
+    Pk = np.where(W >= eta, 1.0 / W, 0.0); k = 1
+    while True:
+        terms.append(2.0 ** (-k) * Pk * inner * hw)
+        Pn = np.zeros_like(W)
+        for i, w in enumerate(W):
+            if w < (k + 1) * eta: continue
+            t = W[(W >= eta) & (W <= w - k * eta + 1e-12)]
+            idx = np.clip(np.searchsorted(W, w - t), 0, len(W) - 1)
+            Pn[i] = np.sum(Pk[idx] / t) * hw / (k + 1)
+        if not Pn.any(): break
+        Pk = Pn; k += 1
+    return t0, W, terms
+
+def Jlam(parts, lam, u0):
+    """switched-term integral with the Richert weight w_+(r) on the bad survivors (lam = 0: plain J)"""
+    t0, W, terms = parts
+    tot = t0
+    for k, tk in enumerate(terms, start=1):
+        tot += np.sum(tk * np.maximum(0.0, 1 - lam * (k - W / u0)))
+    return tot / 4
+
 cache = {}
 def ingr(eta, th):
     key = (eta, round(th, 4))
     if key not in cache:
         P, arg = Phi(eta, th)
-        jj = J(eta, th, hw=(5e-4 if eta < 0.006 else 1e-3))
+        parts = Jparts(eta, th, 5e-4 if eta < 0.006 else 1e-3)
         ts = np.geomspace(eta, 0.49, 240)
         Gs = np.array([G(t, eta, th) for t in ts]) if P > 0 else None
-        cache[key] = (P, arg, jj, ts, Gs)
+        cache[key] = (P, arg, parts, ts, Gs)
     return cache[key]
 
 def weighted(r, L, etas, ths):
-    best = None
+    """returns (best with weighted bad survivors, best with bad survivors at weight 1)"""
+    best = None; old = None
     for eta in etas:
         for th in ths:
-            P, arg, jj, ts, Gs = ingr(eta, th)
+            P, arg, parts, ts, Gs = ingr(eta, th)
             if P <= 0: continue
+            j0 = Jlam(parts, 0.0, 1.0)
             for u0 in np.linspace(eta + 0.01, 0.48, 300):
                 il = r + 1 - 1e-6 - 1 / u0
                 if il <= 0: continue
@@ -122,10 +157,14 @@ def weighted(r, L, etas, ths):
                 if m.sum() < 2: continue
                 integ = np.trapz((1 - ts[m] / u0) * Gs[m] / ts[m], ts[m])
                 main = c * (P - lam / 2 * integ) / np.sqrt(eta * th)
+                jj = Jlam(parts, lam, u0) if 1 - 2 * th <= u0 else j0
                 M = main - 8 * L * jj
                 if best is None or M > best["M"]:
                     best = dict(M=M, eta=eta, th=th, u0=u0, lam=lam, s=arg, main=main, T=8 * L * jj)
-    return best
+                M0 = main - 8 * L * j0
+                if old is None or M0 > old["M"]:
+                    old = dict(M=M0, main=main, T=8 * L * j0)
+    return best, old
 
 if __name__ == "__main__":
     t0 = time.time()
@@ -146,25 +185,26 @@ if __name__ == "__main__":
             if best is None or M > best[0]: best = (M, th, arg)
         say("  r = %2d  eta = %.4f  th = %.4f  s1 = %.3f  s3 = %.3f  margin = %+.4f" % (r, eta, best[1], *best[2], best[0]))
 
-    setups = {1.0: ([0.006, 0.008, 0.01, 0.011, 0.012, 0.013, 0.015], range(6, 13)),
-              1.5: ([0.004, 0.005, 0.006, 0.007, 0.008, 0.01], range(9, 16)),
-              3.0: ([0.0015, 0.002, 0.0025, 0.003, 0.004], range(15, 23))}
-    ths = np.arange(0.36, 0.4951, 0.005)
-    curves = {}
+    setups = {1.0: ([0.004, 0.006, 0.008, 0.01, 0.012, 0.015, 0.02], range(6, 12)),
+              1.5: ([0.003, 0.004, 0.005, 0.006, 0.008, 0.01], range(9, 15)),
+              3.0: ([0.0015, 0.002, 0.0025, 0.003, 0.004, 0.005], range(15, 22))}
+    ths = np.arange(0.33, 0.4951, 0.005)
+    curves = {}; olds = {}
     for L, (etas, rs) in setups.items():
-        say("\nWeighted, switching loss L = %.1f" % L)
-        curves[L] = []
+        say("\nWeighted (Richert weights also on the bad survivors), switching loss L = %.1f" % L)
+        curves[L] = []; olds[L] = []
         for r in rs:
-            b = weighted(r, L, etas, ths)
-            curves[L].append((r, b["M"], b["main"], b["T"]))
-            say("  r = %2d  margin = %+.4f  (main %.4f, switched %.4f)  eta = %.4f  th = %.3f  u0 = %.3f  1/lam = %.3f  s1 = %.3f  s3 = %.3f  %s"
-                % (r, b["M"], b["main"], b["T"], b["eta"], b["th"], b["u0"], 1 / b["lam"], b["s"][0], b["s"][1],
-                   "OK" if b["M"] > 0 else ""))
+            b, o = weighted(r, L, etas, ths)
+            curves[L].append((r, b["M"], b["main"], b["T"])); olds[L].append((r, o["M"], o["main"], o["T"]))
+            say("  r = %2d  margin = %+.4f (%.1f%%)  (main %.4f, switched %.4f)  eta = %.4f  th = %.3f  u0 = %.3f  1/lam = %.3f  s1 = %.3f  s3 = %.3f  | bad survivors at weight 1: %+.4f"
+                % (r, b["M"], 100 * b["M"] / b["main"], b["main"], b["T"], b["eta"], b["th"], b["u0"], 1 / b["lam"],
+                   b["s"][0], b["s"][1], o["M"]))
         rmin = min([r for r, M, _, _ in curves[L] if M > 0])
         rsafe = min([r for r, M, mn, _ in curves[L] if M > 0.05 * mn])
-        say("  => L = %.1f: smallest r with margin > 0: %d; smallest r with margin > 5%% of main: %d (= r_0(L) in the paper)"
-            % (L, rmin, rsafe))
-    np.save(os.path.join(RES, "semilinear_curves.npy"), {str(k): v for k, v in curves.items()}, allow_pickle=True)
+        rold = min([r for r, M, mn, _ in olds[L] if M > 0.05 * mn])
+        say("  => L = %.1f: smallest r with margin > 0: %d; with margin > 5%% of main: %d (= r_0(L)); bad survivors at weight 1: %d"
+            % (L, rmin, rsafe, rold))
+    np.save(os.path.join(RES, "semilinear_curves.npy"), {"weighted": {str(k): v for k, v in curves.items()}, "weight1": {str(k): v for k, v in olds.items()}}, allow_pickle=True)
 
     import matplotlib
     matplotlib.use("Agg")
@@ -175,18 +215,20 @@ if __name__ == "__main__":
     for L, data in curves.items():
         rr = [d[0] for d in data]; MM = [d[1] / d[2] for d in data]
         ax[0].plot(rr, MM, "o-", color=cols[L], label=r"$L=%g$" % L)
+        ax[0].plot([d[0] for d in olds[L]], [d[1] / d[2] for d in olds[L]], ":", color=cols[L], lw=1)
         rmin = min([d[0] for d in data if d[1] > 0.05 * d[2]])
-        off = {1.0: (-38, 8), 1.5: (8, -16), 3.0: (8, -16)}[L]
+        off = {1.0: (-40, 8), 1.5: (10, -24), 3.0: (10, -24)}[L]
         ax[0].annotate(r"$r_0=%d$" % rmin, (rmin, [d[1] / d[2] for d in data if d[0] == rmin][0]),
                        textcoords="offset points", xytext=off, color=cols[L], fontsize=10)
     ax[0].axhline(0, color="k", lw=0.8)
     ax[0].set_xlabel(r"$r$"); ax[0].set_ylabel(r"(main $-$ switched)/main")
-    ax[0].set_title("Richert-weighted margin"); ax[0].legend(frameon=False)
+    ax[0].plot([], [], "k:", lw=1, label="bad survivors at weight 1")
+    ax[0].set_title("Richert-weighted margin"); ax[0].legend(frameon=False, fontsize=9)
     for L, data in curves.items():
         rr = [d[0] for d in data]
         ax[1].plot(rr, [d[2] for d in data], "-", color=cols[L])
         ax[1].plot(rr, [d[3] for d in data], "--", color=cols[L])
-    ax[1].plot([], [], "k-", label="weighted main term"); ax[1].plot([], [], "k--", label=r"switched term $8LJ$")
+    ax[1].plot([], [], "k-", label="weighted main term"); ax[1].plot([], [], "k--", label=r"switched term $8LJ_\lambda$")
     ax[1].set_xlabel(r"$r$"); ax[1].set_ylabel(r"units of $2\mathcal{B}$")
     ax[1].set_title("main term and switched term at the optimum"); ax[1].legend(frameon=False, fontsize=9)
     fig.tight_layout()

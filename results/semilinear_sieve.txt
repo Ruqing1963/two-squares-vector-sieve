@@ -12,35 +12,32 @@ Unweighted (L = 1): margin = main - 8 J, r = floor(1/eta)
   r = 25  eta = 0.0386  th = 0.3505  s1 = 2.340  s3 = 1.169  margin = +0.0718
   r = 26  eta = 0.0371  th = 0.3505  s1 = 2.365  s3 = 1.176  margin = +0.1334
 
-Weighted, switching loss L = 1.0
-  r =  6  margin = -1.1366  (main 1.2316, switched 2.3682)  eta = 0.0150  th = 0.385  u0 = 0.404  1/lam = 4.524  s1 = 2.785  s3 = 1.190  
-  r =  7  margin = -0.5837  (main 1.7845, switched 2.3682)  eta = 0.0150  th = 0.385  u0 = 0.355  1/lam = 5.185  s1 = 2.785  s3 = 1.190  
-  r =  8  margin = -0.1511  (main 2.3996, switched 2.5507)  eta = 0.0110  th = 0.390  u0 = 0.345  1/lam = 6.101  s1 = 2.925  s3 = 1.200  
-  r =  9  margin = +0.2659  (main 3.0211, switched 2.7552)  eta = 0.0080  th = 0.395  u0 = 0.335  1/lam = 7.013  s1 = 3.015  s3 = 1.205  OK
-  r = 10  margin = +0.6860  (main 3.8502, switched 3.1643)  eta = 0.0060  th = 0.395  u0 = 0.326  1/lam = 7.936  s1 = 3.125  s3 = 1.218  OK
-  r = 11  margin = +1.0507  (main 4.2150, switched 3.1643)  eta = 0.0060  th = 0.395  u0 = 0.297  1/lam = 8.632  s1 = 3.125  s3 = 1.218  OK
-  r = 12  margin = +1.3498  (main 4.5141, switched 3.1643)  eta = 0.0060  th = 0.395  u0 = 0.271  1/lam = 9.303  s1 = 3.125  s3 = 1.218  OK
-  => L = 1.0: smallest r with margin > 0: 9; smallest r with margin > 5% of main: 9 (= r_0(L) in the paper)
+Weighted (Richert weights also on the bad survivors), switching loss L = 1.0
+  r =  6  margin = -0.6203 (-26.7%)  (main 2.3237, switched 2.9440)  eta = 0.0150  th = 0.350  u0 = 0.366  1/lam = 4.267  s1 = 2.875  s3 = 1.305  | bad survivors at weight 1: -1.0556
+  r =  7  margin = -0.1329 (-4.7%)  (main 2.8514, switched 2.9843)  eta = 0.0120  th = 0.360  u0 = 0.342  1/lam = 5.077  s1 = 2.935  s3 = 1.291  | bad survivors at weight 1: -0.5827
+  r =  8  margin = +0.3396 (9.6%)  (main 3.5533, switched 3.2137)  eta = 0.0080  th = 0.370  u0 = 0.335  1/lam = 6.013  s1 = 3.080  s3 = 1.285  | bad survivors at weight 1: -0.1519
+  r =  9  margin = +0.8501 (16.2%)  (main 5.2463, switched 4.3962)  eta = 0.0040  th = 0.370  u0 = 0.348  1/lam = 7.123  s1 = 3.330  s3 = 1.315  | bad survivors at weight 1: +0.2662
+  r = 10  margin = +1.3500 (24.2%)  (main 5.5848, switched 4.2349)  eta = 0.0040  th = 0.375  u0 = 0.321  1/lam = 7.885  s1 = 3.270  s3 = 1.298  | bad survivors at weight 1: +0.6863
+  r = 11  margin = +1.7554 (30.3%)  (main 5.8022, switched 4.0469)  eta = 0.0040  th = 0.380  u0 = 0.296  1/lam = 8.623  s1 = 3.300  s3 = 1.281  | bad survivors at weight 1: +1.1448
+  => L = 1.0: smallest r with margin > 0: 8; with margin > 5% of main: 8 (= r_0(L)); bad survivors at weight 1: 9
 
-Weighted, switching loss L = 1.5
-  r =  9  margin = -0.7443  (main 1.4548, switched 2.1991)  eta = 0.0100  th = 0.425  u0 = 0.315  1/lam = 6.829  s1 = 2.865  s3 = 1.109  
-  r = 10  margin = -0.4044  (main 2.0349, switched 2.4393)  eta = 0.0080  th = 0.425  u0 = 0.302  1/lam = 7.692  s1 = 2.960  s3 = 1.121  
-  r = 11  margin = -0.0757  (main 2.4360, switched 2.5117)  eta = 0.0060  th = 0.430  u0 = 0.297  1/lam = 8.632  s1 = 3.020  s3 = 1.121  
-  r = 12  margin = +0.2510  (main 2.9878, switched 2.7368)  eta = 0.0050  th = 0.430  u0 = 0.286  1/lam = 9.499  s1 = 3.090  s3 = 1.127  OK
-  r = 13  margin = +0.5777  (main 3.6241, switched 3.0464)  eta = 0.0040  th = 0.430  u0 = 0.279  1/lam = 10.415  s1 = 3.175  s3 = 1.133  OK
-  r = 14  margin = +0.8585  (main 3.9049, switched 3.0464)  eta = 0.0040  th = 0.430  u0 = 0.257  1/lam = 11.111  s1 = 3.175  s3 = 1.133  OK
-  r = 15  margin = +1.0989  (main 4.1453, switched 3.0464)  eta = 0.0040  th = 0.430  u0 = 0.237  1/lam = 11.778  s1 = 3.175  s3 = 1.133  OK
-  => L = 1.5: smallest r with margin > 0: 12; smallest r with margin > 5% of main: 12 (= r_0(L) in the paper)
+Weighted (Richert weights also on the bad survivors), switching loss L = 1.5
+  r =  9  margin = -0.4415 (-20.7%)  (main 2.1368, switched 2.5784)  eta = 0.0080  th = 0.415  u0 = 0.313  1/lam = 6.806  s1 = 2.960  s3 = 1.148  | bad survivors at weight 1: -0.7443
+  r = 10  margin = -0.0837 (-2.9%)  (main 2.8644, switched 2.9481)  eta = 0.0060  th = 0.415  u0 = 0.297  1/lam = 7.632  s1 = 3.055  s3 = 1.161  | bad survivors at weight 1: -0.4044
+  r = 11  margin = +0.2777 (7.9%)  (main 3.5231, switched 3.2454)  eta = 0.0040  th = 0.420  u0 = 0.302  1/lam = 8.692  s1 = 3.205  s3 = 1.160  | bad survivors at weight 1: -0.0757
+  r = 12  margin = +0.6580 (15.0%)  (main 4.3848, switched 3.7269)  eta = 0.0030  th = 0.420  u0 = 0.293  1/lam = 9.582  s1 = 3.335  s3 = 1.167  | bad survivors at weight 1: +0.2510
+  r = 13  margin = +1.0193 (23.0%)  (main 4.4403, switched 3.4210)  eta = 0.0030  th = 0.425  u0 = 0.275  1/lam = 10.369  s1 = 3.275  s3 = 1.153  | bad survivors at weight 1: +0.5883
+  r = 14  margin = +1.3279 (27.8%)  (main 4.7814, switched 3.4534)  eta = 0.0030  th = 0.425  u0 = 0.252  1/lam = 11.031  s1 = 3.275  s3 = 1.153  | bad survivors at weight 1: +0.9312
+  => L = 1.5: smallest r with margin > 0: 11; with margin > 5% of main: 11 (= r_0(L)); bad survivors at weight 1: 12
 
-Weighted, switching loss L = 3.0
-  r = 15  margin = -0.6588  (main 1.4674, switched 2.1263)  eta = 0.0040  th = 0.465  u0 = 0.237  1/lam = 11.778  s1 = 3.035  s3 = 1.049  
-  r = 16  margin = -0.4382  (main 1.9942, switched 2.4324)  eta = 0.0030  th = 0.465  u0 = 0.236  1/lam = 12.769  s1 = 3.180  s3 = 1.055  
-  r = 17  margin = -0.2159  (main 2.2165, switched 2.4324)  eta = 0.0030  th = 0.465  u0 = 0.222  1/lam = 13.501  s1 = 3.180  s3 = 1.055  
-  r = 18  margin = +0.0037  (main 2.6557, switched 2.6520)  eta = 0.0025  th = 0.465  u0 = 0.220  1/lam = 14.464  s1 = 3.220  s3 = 1.058  OK
-  r = 19  margin = +0.2269  (main 3.1774, switched 2.9506)  eta = 0.0020  th = 0.465  u0 = 0.219  1/lam = 15.426  s1 = 3.305  s3 = 1.061  OK
-  r = 20  margin = +0.4546  (main 3.8436, switched 3.3891)  eta = 0.0015  th = 0.465  u0 = 0.220  1/lam = 16.452  s1 = 3.415  s3 = 1.064  OK
-  r = 21  margin = +0.6789  (main 4.0680, switched 3.3891)  eta = 0.0015  th = 0.465  u0 = 0.209  1/lam = 17.214  s1 = 3.415  s3 = 1.064  OK
-  r = 22  margin = +0.8816  (main 4.2707, switched 3.3891)  eta = 0.0015  th = 0.465  u0 = 0.200  1/lam = 17.988  s1 = 3.415  s3 = 1.064  OK
-  => L = 3.0: smallest r with margin > 0: 18; smallest r with margin > 5% of main: 19 (= r_0(L) in the paper)
+Weighted (Richert weights also on the bad survivors), switching loss L = 3.0
+  r = 15  margin = -0.4804 (-25.0%)  (main 1.9219, switched 2.4023)  eta = 0.0040  th = 0.460  u0 = 0.228  1/lam = 11.605  s1 = 3.070  s3 = 1.060  | bad survivors at weight 1: -0.6588
+  r = 16  margin = -0.2447 (-9.8%)  (main 2.4932, switched 2.7379)  eta = 0.0030  th = 0.460  u0 = 0.227  1/lam = 12.594  s1 = 3.175  s3 = 1.066  | bad survivors at weight 1: -0.4382
+  r = 17  margin = -0.0182 (-0.6%)  (main 2.9653, switched 2.9835)  eta = 0.0025  th = 0.460  u0 = 0.220  1/lam = 13.464  s1 = 3.220  s3 = 1.069  | bad survivors at weight 1: -0.2159
+  r = 18  margin = +0.2260 (7.7%)  (main 2.9456, switched 2.7196)  eta = 0.0020  th = 0.465  u0 = 0.219  1/lam = 14.426  s1 = 3.305  s3 = 1.061  | bad survivors at weight 1: +0.0037
+  r = 19  margin = +0.4805 (13.4%)  (main 3.5918, switched 3.1114)  eta = 0.0015  th = 0.465  u0 = 0.220  1/lam = 15.452  s1 = 3.415  s3 = 1.064  | bad survivors at weight 1: +0.2269
+  r = 20  margin = +0.7168 (18.7%)  (main 3.8419, switched 3.1251)  eta = 0.0015  th = 0.465  u0 = 0.209  1/lam = 16.214  s1 = 3.415  s3 = 1.064  | bad survivors at weight 1: +0.4546
+  r = 21  margin = +0.9290 (22.8%)  (main 4.0668, switched 3.1378)  eta = 0.0015  th = 0.465  u0 = 0.200  1/lam = 16.988  s1 = 3.415  s3 = 1.064  | bad survivors at weight 1: +0.6789
+  => L = 3.0: smallest r with margin > 0: 18; with margin > 5% of main: 18 (= r_0(L)); bad survivors at weight 1: 19
 
-figure written; total time 163 s
+figure written; total time 455 s
