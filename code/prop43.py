@@ -1,4 +1,4 @@
-﻿"""Proposition 4.3: an unconditional explicit r_0(L) for every L (unweighted sieve, lambda = 0).
+"""Proposition 4.4: an unconditional explicit r_0(L) for every L (unweighted sieve, lambda = 0).
 Choice: delta = 0.08/L, theta = (1-delta)/2, s3 = 1 + delta/2, s1 = s1(L) the least s >= 2 on the grid with
 F(s) - f(s) <= 0.14 sqrt(delta), eta = delta(1+delta)/(4 s1).  Then r_0(L) <= floor(1/eta) < 50 L s1.
 The script also evaluates the actual main term and J at these parameters, to check the chain of inequalities.

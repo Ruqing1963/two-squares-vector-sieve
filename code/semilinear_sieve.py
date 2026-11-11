@@ -7,6 +7,8 @@ Quantities are in units of 2B, B = X * Sg(N) * Dcorr / L (Section 4 of the paper
 Positivity  main - switched > 0  gives Omega(m) <= r with
   r = floor(1/eta) (unweighted, eta not 1/integer) or 1/lam + 1/u0 = r + 1 - 0 (weighted).
 L = 1 (no class condition on the prime, or h = 1), L = 3/2 (h = 3, C' non-principal), L = 3 (h = 3, C' principal).
+Phi and G are computed with the rectangle bounds and with one Buchstab step on the inert primes (Lemma 4.3);
+r_0(L) is the least r with margin > 0 after the Buchstab step.
 
 Run: python semilinear_sieve.py     (about 30 minutes; writes results/ and figures/)
 """
@@ -17,9 +19,10 @@ from math import gamma as Gamma
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "..", "results"); FIG = os.path.join(HERE, "..", "figures")
 os.makedirs(RES, exist_ok=True); os.makedirs(FIG, exist_ok=True)
-out = open(os.path.join(RES, "semilinear_sieve.txt"), "w", encoding="utf8")
+out = open(os.path.join(RES, "semilinear_sieve.txt"), "w", encoding="utf8") if __name__ == "__main__" else None
 def say(*a):
-    s = " ".join(str(x) for x in a); print(s); out.write(s + "\n"); out.flush()
+    s = " ".join(str(x) for x in a); print(s)
+    if out: out.write(s + "\n"); out.flush()
 
 g = np.euler_gamma
 EG = np.exp(g)
@@ -98,6 +101,64 @@ def G(t, eta, th):
         best = min(best, ff(s1)[1] * ff(s3)[1])
     return best
 
+# ---------------- one Buchstab step on the inert primes (Section 4.6) ----------------
+n12 = len(S)
+def lk(arr, s):
+    return arr[np.clip(np.round(np.minimum(s, 39.9) / h).astype(int) - 1, 0, n12 - 1)]
+
+def PhiX(X, e, a):
+    """vector lower bound at level N^X, split primes < N^e, inert primes < N^a; clipped at 0"""
+    smax = (X - a) / e
+    if smax <= 1.0: return 0.0
+    s1 = np.geomspace(1.0, smax, 500); s3 = (X - e * s1) / a
+    v = lk(f12, s1) * lk(F12, s3) + lk(F12, s1) * lk(f12, s3) - lk(F12, s1) * lk(F12, s3)
+    return max(0.0, v.max())
+
+def GX(X, e, a):
+    """vector upper bound min F(s1) F(s3), e s1 + a s3 = X"""
+    s1 = np.geomspace(1e-4, X / e * (1 - 1e-6), 800); s3 = (X - e * s1) / a
+    k = s3 >= 1e-4
+    return (lk(F12, s1[k]) * lk(F12, s3[k])).min()
+
+AG = np.geomspace(0.01, 0.495, 440)          # grid of cuts theta0 and of inert primes q = N^a
+
+def cum_from(x, y):
+    """C[i] = int_{x_i}^{x_end} y (trapezoid)"""
+    seg = 0.5 * (y[1:] + y[:-1]) * np.diff(x)
+    return np.concatenate([np.cumsum(seg[::-1])[::-1], [0.0]])
+
+btab = {}
+def buchstab_tables(eta, ts):
+    if eta not in btab:
+        Pm = np.array([PhiX(0.5, eta, a) for a in AG])
+        Gm = np.array([GX(0.5 - a, eta, a) for a in AG])
+        GR = np.array([[GX(0.5 - t, eta, a) for a in AG] for t in ts])
+        PR = np.array([[PhiX(0.5 - t - a, eta, a) if a < (0.5 - t) / 2 else 0.0 for a in AG] for t in ts])
+        btab[eta] = (Pm, Gm, GR, PR)
+    return btab[eta]
+
+def buchstab(eta, th, ts):
+    """Phi_B(eta, th) and G_B(t) on ts (Lemma 4.3):
+       Phi_B = max_{theta0} [ sqrt(th/theta0) Phi(1/2; eta, theta0) - 1/2 int_{theta0}^{th} sqrt(th/a) G(1/2-a; eta, a) da/a ]
+       G_B(t) = min_{theta0} [ sqrt(th/theta0) G(1/2-t; eta, theta0) - 1/2 int_{theta0}^{th} sqrt(th/a) Phi+(1/2-t-a; eta, a) da/a ]
+       The integrals run up to theta exactly; theta0 = theta gives the rectangle bounds."""
+    Pm, Gm, GR, PR = buchstab_tables(eta, ts)
+    k = AG < th - 1e-9
+    a = np.append(AG[k], th)
+    P0 = PhiX(0.5, eta, th)
+    cum = cum_from(np.log(a), np.append(Gm[k], GX(0.5 - th, eta, th)) * a ** -0.5)
+    vals = np.sqrt(th) * (np.append(Pm[k], P0) / np.sqrt(a) - 0.5 * cum)
+    i = int(np.argmax(vals))
+    PhiB, th0 = max(P0, vals[i]), (a[i] if vals[i] > P0 else th)
+    GB = np.empty(len(ts))
+    for i, t in enumerate(ts):
+        R = 0.5 - t
+        g0 = GX(R, eta, th)
+        pr = np.append(PR[i, k], PhiX(R - th, eta, th) if th < R / 2 else 0.0)
+        cum = cum_from(np.log(a), pr * a ** -0.5)
+        GB[i] = min(g0, np.min(np.sqrt(th) * (np.append(GR[i, k], g0) / np.sqrt(a) - 0.5 * cum)))
+    return PhiB, GB, th0
+
 def Jparts(eta, th, hw):
     """J split by k: J_lam = 1/4 [t0 + sum_k sum_w terms_k(w) max(0, 1 - lam (k - w/u0))]."""
     a = np.arange(th, 0.5, hw) + hw / 2
@@ -139,15 +200,16 @@ def ingr(eta, th):
         parts = Jparts(eta, th, 5e-4 if eta < 0.006 else 1e-3)
         ts = np.geomspace(eta, 0.49, 240)
         Gs = np.array([G(t, eta, th) for t in ts]) if P > 0 else None
-        cache[key] = (P, arg, parts, ts, Gs)
+        B = buchstab(eta, th, ts) if P > 0 else None
+        cache[key] = (P, arg, parts, ts, Gs, B)
     return cache[key]
 
 def weighted(r, L, etas, ths):
-    """returns (best with weighted bad survivors, best with bad survivors at weight 1)"""
-    best = None; old = None
+    """returns (best with the Buchstab step, best with the rectangle bounds, rectangle with bad survivors at weight 1)"""
+    best = None; rect = None; old = None
     for eta in etas:
         for th in ths:
-            P, arg, parts, ts, Gs = ingr(eta, th)
+            P, arg, parts, ts, Gs, B = ingr(eta, th)
             if P <= 0: continue
             j0 = Jlam(parts, 0.0, 1.0)
             for u0 in np.linspace(eta + 0.01, 0.48, 300):
@@ -155,16 +217,21 @@ def weighted(r, L, etas, ths):
                 if il <= 0: continue
                 lam = 1 / il; m = ts <= u0
                 if m.sum() < 2: continue
+                jj = Jlam(parts, lam, u0) if 1 - 2 * th <= u0 else j0
                 integ = np.trapz((1 - ts[m] / u0) * Gs[m] / ts[m], ts[m])
                 main = c * (P - lam / 2 * integ) / np.sqrt(eta * th)
-                jj = Jlam(parts, lam, u0) if 1 - 2 * th <= u0 else j0
                 M = main - 8 * L * jj
-                if best is None or M > best["M"]:
-                    best = dict(M=M, eta=eta, th=th, u0=u0, lam=lam, s=arg, main=main, T=8 * L * jj)
+                if rect is None or M > rect["M"]:
+                    rect = dict(M=M, eta=eta, th=th, u0=u0, lam=lam, s=arg, main=main, T=8 * L * jj)
                 M0 = main - 8 * L * j0
                 if old is None or M0 > old["M"]:
                     old = dict(M=M0, main=main, T=8 * L * j0)
-    return best, old
+                integB = np.trapz((1 - ts[m] / u0) * B[1][m] / ts[m], ts[m])
+                mainB = c * (B[0] - lam / 2 * integB) / np.sqrt(eta * th)
+                MB = mainB - 8 * L * jj
+                if best is None or MB > best["M"]:
+                    best = dict(M=MB, eta=eta, th=th, u0=u0, lam=lam, th0=B[2], main=mainB, T=8 * L * jj)
+    return best, rect, old
 
 if __name__ == "__main__":
     t0 = time.time()
@@ -189,22 +256,24 @@ if __name__ == "__main__":
               1.5: ([0.003, 0.004, 0.005, 0.006, 0.008, 0.01], range(9, 15)),
               3.0: ([0.0015, 0.002, 0.0025, 0.003, 0.004, 0.005], range(15, 22))}
     ths = np.arange(0.33, 0.4951, 0.005)
-    curves = {}; olds = {}
+    curves = {}; rects = {}; olds = {}
     for L, (etas, rs) in setups.items():
         say("\nWeighted (Richert weights also on the bad survivors), switching loss L = %.1f" % L)
-        curves[L] = []; olds[L] = []
+        curves[L] = []; rects[L] = []; olds[L] = []
         for r in rs:
-            b, o = weighted(r, L, etas, ths)
-            curves[L].append((r, b["M"], b["main"], b["T"])); olds[L].append((r, o["M"], o["main"], o["T"]))
-            say("  r = %2d  margin = %+.4f (%.1f%%)  (main %.4f, switched %.4f)  eta = %.4f  th = %.3f  u0 = %.3f  1/lam = %.3f  s1 = %.3f  s3 = %.3f  | bad survivors at weight 1: %+.4f"
-                % (r, b["M"], 100 * b["M"] / b["main"], b["main"], b["T"], b["eta"], b["th"], b["u0"], 1 / b["lam"],
-                   b["s"][0], b["s"][1], o["M"]))
-        rmin = min([r for r, M, _, _ in curves[L] if M > 0])
-        rsafe = min([r for r, M, mn, _ in curves[L] if M > 0.05 * mn])
-        rold = min([r for r, M, mn, _ in olds[L] if M > 0.05 * mn])
-        say("  => L = %.1f: smallest r with margin > 0: %d; with margin > 5%% of main: %d (= r_0(L)); bad survivors at weight 1: %d"
-            % (L, rmin, rsafe, rold))
-    np.save(os.path.join(RES, "semilinear_curves.npy"), {"weighted": {str(k): v for k, v in curves.items()}, "weight1": {str(k): v for k, v in olds.items()}}, allow_pickle=True)
+            b, q, o = weighted(r, L, etas, ths)
+            curves[L].append((r, b["M"], b["main"], b["T"])); rects[L].append((r, q["M"], q["main"], q["T"]))
+            olds[L].append((r, o["M"], o["main"], o["T"]))
+            say("  r = %2d  Buchstab: margin = %+.4f (%.1f%%)  (main %.4f, switched %.4f)  eta = %.4f  th = %.3f  theta0 = %.3f  u0 = %.3f  1/lam = %.3f"
+                % (r, b["M"], 100 * b["M"] / b["main"], b["main"], b["T"], b["eta"], b["th"], b["th0"], b["u0"], 1 / b["lam"]))
+            say("          rectangle: margin = %+.4f (%.1f%%)  (main %.4f, switched %.4f)  eta = %.4f  th = %.3f  u0 = %.3f  1/lam = %.3f  s1 = %.3f  s3 = %.3f  | weight 1: %+.4f"
+                % (q["M"], 100 * q["M"] / q["main"], q["main"], q["T"], q["eta"], q["th"], q["u0"], 1 / q["lam"], q["s"][0], q["s"][1], o["M"]))
+        r0 = min([r for r, M, _, _ in curves[L] if M > 0])
+        rr = min([r for r, M, _, _ in rects[L] if M > 0])
+        rold = min([r for r, M, _, _ in olds[L] if M > 0])
+        say("  => L = %.1f: r_0(L) = %d (Buchstab, margin > 0); rectangle bounds: %d; bad survivors at weight 1: %d" % (L, r0, rr, rold))
+    np.save(os.path.join(RES, "semilinear_curves.npy"), {"buchstab": {str(k): v for k, v in curves.items()}, "rectangle": {str(k): v for k, v in rects.items()},
+                                                         "weight1": {str(k): v for k, v in olds.items()}}, allow_pickle=True)
 
     import matplotlib
     matplotlib.use("Agg")
@@ -215,14 +284,16 @@ if __name__ == "__main__":
     for L, data in curves.items():
         rr = [d[0] for d in data]; MM = [d[1] / d[2] for d in data]
         ax[0].plot(rr, MM, "o-", color=cols[L], label=r"$L=%g$" % L)
+        ax[0].plot([d[0] for d in rects[L]], [d[1] / d[2] for d in rects[L]], "--", color=cols[L], lw=1)
         ax[0].plot([d[0] for d in olds[L]], [d[1] / d[2] for d in olds[L]], ":", color=cols[L], lw=1)
-        rmin = min([d[0] for d in data if d[1] > 0.05 * d[2]])
+        rmin = min([d[0] for d in data if d[1] > 0])
         off = {1.0: (-40, 8), 1.5: (10, -24), 3.0: (10, -24)}[L]
         ax[0].annotate(r"$r_0=%d$" % rmin, (rmin, [d[1] / d[2] for d in data if d[0] == rmin][0]),
                        textcoords="offset points", xytext=off, color=cols[L], fontsize=10)
     ax[0].axhline(0, color="k", lw=0.8)
     ax[0].set_xlabel(r"$r$"); ax[0].set_ylabel(r"(main $-$ switched)/main")
-    ax[0].plot([], [], "k:", lw=1, label="bad survivors at weight 1")
+    ax[0].plot([], [], "k--", lw=1, label="rectangle bounds")
+    ax[0].plot([], [], "k:", lw=1, label="rectangle, bad survivors at weight 1")
     ax[0].set_title("Richert-weighted margin"); ax[0].legend(frameon=False, fontsize=9)
     for L, data in curves.items():
         rr = [d[0] for d in data]

@@ -13,31 +13,50 @@ Unweighted (L = 1): margin = main - 8 J, r = floor(1/eta)
   r = 26  eta = 0.0371  th = 0.3505  s1 = 2.365  s3 = 1.176  margin = +0.1334
 
 Weighted (Richert weights also on the bad survivors), switching loss L = 1.0
-  r =  6  margin = -0.6203 (-26.7%)  (main 2.3237, switched 2.9440)  eta = 0.0150  th = 0.350  u0 = 0.366  1/lam = 4.267  s1 = 2.875  s3 = 1.305  | bad survivors at weight 1: -1.0556
-  r =  7  margin = -0.1329 (-4.7%)  (main 2.8514, switched 2.9843)  eta = 0.0120  th = 0.360  u0 = 0.342  1/lam = 5.077  s1 = 2.935  s3 = 1.291  | bad survivors at weight 1: -0.5827
-  r =  8  margin = +0.3396 (9.6%)  (main 3.5533, switched 3.2137)  eta = 0.0080  th = 0.370  u0 = 0.335  1/lam = 6.013  s1 = 3.080  s3 = 1.285  | bad survivors at weight 1: -0.1519
-  r =  9  margin = +0.8501 (16.2%)  (main 5.2463, switched 4.3962)  eta = 0.0040  th = 0.370  u0 = 0.348  1/lam = 7.123  s1 = 3.330  s3 = 1.315  | bad survivors at weight 1: +0.2662
-  r = 10  margin = +1.3500 (24.2%)  (main 5.5848, switched 4.2349)  eta = 0.0040  th = 0.375  u0 = 0.321  1/lam = 7.885  s1 = 3.270  s3 = 1.298  | bad survivors at weight 1: +0.6863
-  r = 11  margin = +1.7554 (30.3%)  (main 5.8022, switched 4.0469)  eta = 0.0040  th = 0.380  u0 = 0.296  1/lam = 8.623  s1 = 3.300  s3 = 1.281  | bad survivors at weight 1: +1.1448
-  => L = 1.0: smallest r with margin > 0: 8; with margin > 5% of main: 8 (= r_0(L)); bad survivors at weight 1: 9
+  r =  6  Buchstab: margin = -0.5104 (-25.4%)  (main 2.0086, switched 2.5190)  eta = 0.0200  th = 0.355  theta0 = 0.062  u0 = 0.351  1/lam = 4.147
+          rectangle: margin = -0.6203 (-26.7%)  (main 2.3237, switched 2.9440)  eta = 0.0150  th = 0.350  u0 = 0.366  1/lam = 4.267  s1 = 2.875  s3 = 1.305  | weight 1: -1.0556
+  r =  7  Buchstab: margin = -0.0553 (-2.0%)  (main 2.7665, switched 2.8218)  eta = 0.0120  th = 0.365  theta0 = 0.072  u0 = 0.347  1/lam = 5.116
+          rectangle: margin = -0.1329 (-4.7%)  (main 2.8514, switched 2.9843)  eta = 0.0120  th = 0.360  u0 = 0.342  1/lam = 5.077  s1 = 2.935  s3 = 1.291  | weight 1: -0.5827
+  r =  8  Buchstab: margin = +0.3978 (11.0%)  (main 3.6116, switched 3.2137)  eta = 0.0080  th = 0.370  theta0 = 0.077  u0 = 0.335  1/lam = 6.013
+          rectangle: margin = +0.3396 (9.6%)  (main 3.5533, switched 3.2137)  eta = 0.0080  th = 0.370  u0 = 0.335  1/lam = 6.013  s1 = 3.080  s3 = 1.285  | weight 1: -0.1519
+  r =  9  Buchstab: margin = +0.8865 (16.8%)  (main 5.2826, switched 4.3962)  eta = 0.0040  th = 0.370  theta0 = 0.084  u0 = 0.348  1/lam = 7.123
+          rectangle: margin = +0.8501 (16.2%)  (main 5.2463, switched 4.3962)  eta = 0.0040  th = 0.370  u0 = 0.348  1/lam = 7.123  s1 = 3.330  s3 = 1.315  | weight 1: +0.2662
+  r = 10  Buchstab: margin = +1.3861 (24.7%)  (main 5.6209, switched 4.2349)  eta = 0.0040  th = 0.375  theta0 = 0.084  u0 = 0.321  1/lam = 7.885
+          rectangle: margin = +1.3500 (24.2%)  (main 5.5848, switched 4.2349)  eta = 0.0040  th = 0.375  u0 = 0.321  1/lam = 7.885  s1 = 3.270  s3 = 1.298  | weight 1: +0.6863
+  r = 11  Buchstab: margin = +1.7914 (30.7%)  (main 5.8382, switched 4.0469)  eta = 0.0040  th = 0.380  theta0 = 0.084  u0 = 0.296  1/lam = 8.623
+          rectangle: margin = +1.7554 (30.3%)  (main 5.8022, switched 4.0469)  eta = 0.0040  th = 0.380  u0 = 0.296  1/lam = 8.623  s1 = 3.300  s3 = 1.281  | weight 1: +1.1448
+  => L = 1.0: r_0(L) = 8 (Buchstab, margin > 0); rectangle bounds: 8; bad survivors at weight 1: 9
 
 Weighted (Richert weights also on the bad survivors), switching loss L = 1.5
-  r =  9  margin = -0.4415 (-20.7%)  (main 2.1368, switched 2.5784)  eta = 0.0080  th = 0.415  u0 = 0.313  1/lam = 6.806  s1 = 2.960  s3 = 1.148  | bad survivors at weight 1: -0.7443
-  r = 10  margin = -0.0837 (-2.9%)  (main 2.8644, switched 2.9481)  eta = 0.0060  th = 0.415  u0 = 0.297  1/lam = 7.632  s1 = 3.055  s3 = 1.161  | bad survivors at weight 1: -0.4044
-  r = 11  margin = +0.2777 (7.9%)  (main 3.5231, switched 3.2454)  eta = 0.0040  th = 0.420  u0 = 0.302  1/lam = 8.692  s1 = 3.205  s3 = 1.160  | bad survivors at weight 1: -0.0757
-  r = 12  margin = +0.6580 (15.0%)  (main 4.3848, switched 3.7269)  eta = 0.0030  th = 0.420  u0 = 0.293  1/lam = 9.582  s1 = 3.335  s3 = 1.167  | bad survivors at weight 1: +0.2510
-  r = 13  margin = +1.0193 (23.0%)  (main 4.4403, switched 3.4210)  eta = 0.0030  th = 0.425  u0 = 0.275  1/lam = 10.369  s1 = 3.275  s3 = 1.153  | bad survivors at weight 1: +0.5883
-  r = 14  margin = +1.3279 (27.8%)  (main 4.7814, switched 3.4534)  eta = 0.0030  th = 0.425  u0 = 0.252  1/lam = 11.031  s1 = 3.275  s3 = 1.153  | bad survivors at weight 1: +0.9312
-  => L = 1.5: smallest r with margin > 0: 11; with margin > 5% of main: 11 (= r_0(L)); bad survivors at weight 1: 12
+  r =  9  Buchstab: margin = -0.3573 (-17.9%)  (main 1.9976, switched 2.3548)  eta = 0.0100  th = 0.415  theta0 = 0.075  u0 = 0.295  1/lam = 6.615
+          rectangle: margin = -0.4415 (-20.7%)  (main 2.1368, switched 2.5784)  eta = 0.0080  th = 0.415  u0 = 0.313  1/lam = 6.806  s1 = 2.960  s3 = 1.148  | weight 1: -0.7443
+  r = 10  Buchstab: margin = -0.0190 (-0.7%)  (main 2.6748, switched 2.6939)  eta = 0.0060  th = 0.420  theta0 = 0.081  u0 = 0.303  1/lam = 7.701
+          rectangle: margin = -0.0837 (-2.9%)  (main 2.8644, switched 2.9481)  eta = 0.0060  th = 0.415  u0 = 0.297  1/lam = 7.632  s1 = 3.055  s3 = 1.161  | weight 1: -0.4044
+  r = 11  Buchstab: margin = +0.3308 (10.1%)  (main 3.2784, switched 2.9476)  eta = 0.0050  th = 0.420  theta0 = 0.082  u0 = 0.286  1/lam = 8.499
+          rectangle: margin = +0.2777 (7.9%)  (main 3.5231, switched 3.2454)  eta = 0.0040  th = 0.420  u0 = 0.302  1/lam = 8.692  s1 = 3.205  s3 = 1.160  | weight 1: -0.0757
+  r = 12  Buchstab: margin = +0.6983 (15.8%)  (main 4.4252, switched 3.7269)  eta = 0.0030  th = 0.420  theta0 = 0.087  u0 = 0.293  1/lam = 9.582
+          rectangle: margin = +0.6580 (15.0%)  (main 4.3848, switched 3.7269)  eta = 0.0030  th = 0.420  u0 = 0.293  1/lam = 9.582  s1 = 3.335  s3 = 1.167  | weight 1: +0.2510
+  r = 13  Buchstab: margin = +1.0608 (23.7%)  (main 4.4818, switched 3.4210)  eta = 0.0030  th = 0.425  theta0 = 0.087  u0 = 0.275  1/lam = 10.369
+          rectangle: margin = +1.0193 (23.0%)  (main 4.4403, switched 3.4210)  eta = 0.0030  th = 0.425  u0 = 0.275  1/lam = 10.369  s1 = 3.275  s3 = 1.153  | weight 1: +0.5883
+  r = 14  Buchstab: margin = +1.3689 (28.4%)  (main 4.8223, switched 3.4534)  eta = 0.0030  th = 0.425  theta0 = 0.087  u0 = 0.252  1/lam = 11.031
+          rectangle: margin = +1.3279 (27.8%)  (main 4.7814, switched 3.4534)  eta = 0.0030  th = 0.425  u0 = 0.252  1/lam = 11.031  s1 = 3.275  s3 = 1.153  | weight 1: +0.9312
+  => L = 1.5: r_0(L) = 11 (Buchstab, margin > 0); rectangle bounds: 11; bad survivors at weight 1: 12
 
 Weighted (Richert weights also on the bad survivors), switching loss L = 3.0
-  r = 15  margin = -0.4804 (-25.0%)  (main 1.9219, switched 2.4023)  eta = 0.0040  th = 0.460  u0 = 0.228  1/lam = 11.605  s1 = 3.070  s3 = 1.060  | bad survivors at weight 1: -0.6588
-  r = 16  margin = -0.2447 (-9.8%)  (main 2.4932, switched 2.7379)  eta = 0.0030  th = 0.460  u0 = 0.227  1/lam = 12.594  s1 = 3.175  s3 = 1.066  | bad survivors at weight 1: -0.4382
-  r = 17  margin = -0.0182 (-0.6%)  (main 2.9653, switched 2.9835)  eta = 0.0025  th = 0.460  u0 = 0.220  1/lam = 13.464  s1 = 3.220  s3 = 1.069  | bad survivors at weight 1: -0.2159
-  r = 18  margin = +0.2260 (7.7%)  (main 2.9456, switched 2.7196)  eta = 0.0020  th = 0.465  u0 = 0.219  1/lam = 14.426  s1 = 3.305  s3 = 1.061  | bad survivors at weight 1: +0.0037
-  r = 19  margin = +0.4805 (13.4%)  (main 3.5918, switched 3.1114)  eta = 0.0015  th = 0.465  u0 = 0.220  1/lam = 15.452  s1 = 3.415  s3 = 1.064  | bad survivors at weight 1: +0.2269
-  r = 20  margin = +0.7168 (18.7%)  (main 3.8419, switched 3.1251)  eta = 0.0015  th = 0.465  u0 = 0.209  1/lam = 16.214  s1 = 3.415  s3 = 1.064  | bad survivors at weight 1: +0.4546
-  r = 21  margin = +0.9290 (22.8%)  (main 4.0668, switched 3.1378)  eta = 0.0015  th = 0.465  u0 = 0.200  1/lam = 16.988  s1 = 3.415  s3 = 1.064  | bad survivors at weight 1: +0.6789
-  => L = 3.0: smallest r with margin > 0: 18; with margin > 5% of main: 18 (= r_0(L)); bad survivors at weight 1: 19
+  r = 15  Buchstab: margin = -0.3906 (-19.4%)  (main 2.0117, switched 2.4023)  eta = 0.0040  th = 0.460  theta0 = 0.084  u0 = 0.228  1/lam = 11.605
+          rectangle: margin = -0.4804 (-25.0%)  (main 1.9219, switched 2.4023)  eta = 0.0040  th = 0.460  u0 = 0.228  1/lam = 11.605  s1 = 3.070  s3 = 1.060  | weight 1: -0.6588
+  r = 16  Buchstab: margin = -0.1749 (-6.8%)  (main 2.5630, switched 2.7379)  eta = 0.0030  th = 0.460  theta0 = 0.087  u0 = 0.227  1/lam = 12.594
+          rectangle: margin = -0.2447 (-9.8%)  (main 2.4932, switched 2.7379)  eta = 0.0030  th = 0.460  u0 = 0.227  1/lam = 12.594  s1 = 3.175  s3 = 1.066  | weight 1: -0.4382
+  r = 17  Buchstab: margin = +0.0505 (2.0%)  (main 2.5016, switched 2.4512)  eta = 0.0025  th = 0.465  theta0 = 0.089  u0 = 0.225  1/lam = 13.558
+          rectangle: margin = -0.0182 (-0.6%)  (main 2.9653, switched 2.9835)  eta = 0.0025  th = 0.460  u0 = 0.220  1/lam = 13.464  s1 = 3.220  s3 = 1.069  | weight 1: -0.2159
+  r = 18  Buchstab: margin = +0.2836 (9.4%)  (main 3.0032, switched 2.7196)  eta = 0.0020  th = 0.465  theta0 = 0.091  u0 = 0.219  1/lam = 14.426
+          rectangle: margin = +0.2260 (7.7%)  (main 2.9456, switched 2.7196)  eta = 0.0020  th = 0.465  u0 = 0.219  1/lam = 14.426  s1 = 3.305  s3 = 1.061  | weight 1: +0.0037
+  r = 19  Buchstab: margin = +0.5275 (14.5%)  (main 3.6389, switched 3.1114)  eta = 0.0015  th = 0.465  theta0 = 0.093  u0 = 0.220  1/lam = 15.452
+          rectangle: margin = +0.4805 (13.4%)  (main 3.5918, switched 3.1114)  eta = 0.0015  th = 0.465  u0 = 0.220  1/lam = 15.452  s1 = 3.415  s3 = 1.064  | weight 1: +0.2269
+  r = 20  Buchstab: margin = +0.7635 (19.6%)  (main 3.8886, switched 3.1251)  eta = 0.0015  th = 0.465  theta0 = 0.093  u0 = 0.209  1/lam = 16.214
+          rectangle: margin = +0.7168 (18.7%)  (main 3.8419, switched 3.1251)  eta = 0.0015  th = 0.465  u0 = 0.209  1/lam = 16.214  s1 = 3.415  s3 = 1.064  | weight 1: +0.4546
+  r = 21  Buchstab: margin = +0.9755 (23.7%)  (main 4.1133, switched 3.1378)  eta = 0.0015  th = 0.465  theta0 = 0.093  u0 = 0.200  1/lam = 16.988
+          rectangle: margin = +0.9290 (22.8%)  (main 4.0668, switched 3.1378)  eta = 0.0015  th = 0.465  u0 = 0.200  1/lam = 16.988  s1 = 3.415  s3 = 1.064  | weight 1: +0.6789
+  => L = 3.0: r_0(L) = 17 (Buchstab, margin > 0); rectangle bounds: 18; bad survivors at weight 1: 18
 
-figure written; total time 455 s
+figure written; total time 763 s

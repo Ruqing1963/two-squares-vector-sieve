@@ -1,0 +1,16 @@
+eta -> 0, theta = 0.42, theta0 = 0.1: Buchstab value 0.58471, f(1/(2 theta)) = 0.58474
+eta -> 0, theta = 0.42, theta0 = 0.2: Buchstab value 0.58471, f(1/(2 theta)) = 0.58474
+eta -> 0, theta = 0.42, theta0 = 0.3: Buchstab value 0.58472, f(1/(2 theta)) = 0.58474
+eta=0.0080 th=0.370 u0=0.335 r=8 L=1.0
+   (220,120,1.0e-03): main 3.6104 switched 3.2176 M +0.3928 theta0 0.085
+   (440,240,5.0e-04): main 3.6118 switched 3.2144 M +0.3974 theta0 0.077
+   (880,480,2.5e-04): main 3.6118 switched 3.2129 M +0.3989 theta0 0.072
+eta=0.0050 th=0.420 u0=0.286 r=11 L=1.5
+   (440,240,5.0e-04): main 3.2787 switched 2.9574 M +0.3213 theta0 0.082
+   (880,480,2.5e-04): main 3.2789 switched 2.9514 M +0.3275 theta0 0.076
+eta=0.0025 th=0.465 u0=0.225 r=17 L=3.0
+   (440,240,5.0e-04): main 2.5016 switched 2.4513 M +0.0503 theta0 0.089
+   (880,480,2.5e-04): main 2.5036 switched 2.4493 M +0.0543 theta0 0.082
+eta=0.0020 th=0.465 u0=0.219 r=18 L=3.0
+   (440,240,5.0e-04): main 3.0030 switched 2.7198 M +0.2832 theta0 0.091
+   (880,480,2.5e-04): main 3.0057 switched 2.7180 M +0.2877 theta0 0.084

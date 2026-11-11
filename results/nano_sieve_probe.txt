@@ -1,0 +1,30 @@
+sanity eta->0: theta0=0.10  Buchstab value 0.58471  vs f(1/(2 theta)) = 0.58474
+sanity eta->0: theta0=0.20  Buchstab value 0.58471  vs f(1/(2 theta)) = 0.58474
+sanity eta->0: theta0=0.30  Buchstab value 0.58472  vs f(1/(2 theta)) = 0.58474
+
+main term in units 2B: c/sqrt(eta th) * Phi
+eta 0.008 th 0.370: rect 6.9517  fine +0.0002  B1 +0.0457  B2 +0.0002  ideal +0.5698   (gains over rect)
+     G at t=0.010: rect 1.3473  fine 1.3467  B1 1.3426  B2 1.3467  ideal 1.3086
+     G at t=0.050: rect 1.4079  fine 1.4079  B1 1.4033  B2 1.4079  ideal 1.3649
+     G at t=0.101: rect 1.5004  fine 1.5004  B1 1.4948  B2 1.5004  ideal 1.4493
+     G at t=0.200: rect 1.7506  fine 1.7501  B1 1.7416  B2 1.7501  ideal 1.6728
+eta 0.004 th 0.420: rect 7.4127  fine -0.0000  B1 +0.0414  B2 -0.0000  ideal +0.5972   (gains over rect)
+     G at t=0.010: rect 1.4155  fine 1.4155  B1 1.4134  B2 1.4155  ideal 1.3944
+     G at t=0.050: rect 1.4806  fine 1.4796  B1 1.4771  B2 1.4796  ideal 1.4556
+     G at t=0.100: rect 1.5716  fine 1.5714  B1 1.5685  B2 1.5714  ideal 1.5431
+     G at t=0.198: rect 1.8192  fine 1.8189  B1 1.8144  B2 1.8189  ideal 1.7764
+eta 0.002 th 0.465: rect 6.5222  fine -0.0007  B1 +0.0530  B2 -0.0007  ideal +0.7255   (gains over rect)
+     G at t=0.010: rect 1.4791  fine 1.4787  B1 1.4776  B2 1.4787  ideal 1.4670
+     G at t=0.050: rect 1.5466  fine 1.5443  B1 1.5432  B2 1.5443  ideal 1.5311
+     G at t=0.100: rect 1.6407  fine 1.6395  B1 1.6379  B2 1.6395  ideal 1.6239
+     G at t=0.200: rect 1.8992  fine 1.8974  B1 1.8952  B2 1.8974  ideal 1.8738
+
+margin M (percent of main); last column: cut of 2e^gamma in the switched term needed for M = 0
+L=1.0 r= 7:  rect -0.133 (-4.7%)  fine -0.133 (-4.7%)  B1 -0.055 (-2.0%)  B2 -0.133 (-4.7%)  both -0.055 (-2.0%)  ideal +0.721 (+24.6%)   need 2.0%
+L=1.0 r= 8:  rect +0.339 (+9.0%)  fine +0.339 (+9.0%)  B1 +0.395 (+10.4%)  B2 +0.339 (+9.0%)  both +0.395 (+10.4%)  ideal +1.111 (+34.4%)   need 0.0%
+L=1.5 r=10:  rect -0.084 (-2.9%)  fine -0.083 (-2.9%)  B1 -0.019 (-0.7%)  B2 -0.083 (-2.9%)  both -0.019 (-0.7%)  ideal +0.831 (+29.8%)   need 0.7%
+L=1.5 r=11:  rect +0.274 (+8.5%)  fine +0.274 (+8.5%)  B1 +0.331 (+10.1%)  B2 +0.274 (+8.5%)  both +0.331 (+10.1%)  ideal +1.098 (+35.6%)   need 0.0%
+L=3.0 r=16:  rect -0.245 (-9.8%)  fine -0.246 (-9.9%)  B1 -0.175 (-6.8%)  B2 -0.246 (-9.9%)  both -0.175 (-6.8%)  ideal +0.749 (+27.4%)   need 6.4%
+L=3.0 r=17:  rect -0.019 (-0.8%)  fine -0.017 (-0.7%)  B1 +0.050 (+2.0%)  B2 -0.017 (-0.7%)  both +0.050 (+2.0%)  ideal +0.921 (+36.6%)   need 0.0%
+L=3.0 r=18:  rect +0.226 (+7.7%)  fine +0.227 (+7.7%)  B1 +0.283 (+9.4%)  B2 +0.227 (+7.7%)  both +0.283 (+9.4%)  ideal +1.073 (+40.1%)   need 0.0%
+time 1009 s
