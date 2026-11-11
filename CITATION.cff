@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Sums of two squares and Heegner norms with few prime factors, XIII: half-dimensional vector sieves, class-group covering, and explicit small r for arbitrary class pairs (C', C)"
+authors:
+  - family-names: Chen
+    given-names: Ruqing
+    affiliation: "GUT Geoservice Inc., Montreal, Canada"
+date-released: 2026-11-10
+type: software
