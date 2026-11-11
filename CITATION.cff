@@ -7,3 +7,5 @@ authors:
     affiliation: "GUT Geoservice Inc., Montreal, Canada"
 date-released: 2026-11-10
 type: software
+doi: 10.5281/zenodo.24125302
+repository-code: "https://github.com/Ruqing1963/two-squares-vector-sieve"

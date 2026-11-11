@@ -31,6 +31,8 @@ Contents:
 
 Run with `python <script>.py` (numpy, matplotlib).
 
+Repository: https://github.com/Ruqing1963/two-squares-vector-sieve. DOI: [10.5281/zenodo.24125302](https://doi.org/10.5281/zenodo.24125302).
+
 Earlier parts: Part X doi:10.5281/zenodo.24070749, Part XI doi:10.5281/zenodo.24082184, Part XII doi:10.5281/zenodo.24084767.
 
 Draft, not refereed. The sieve inequality is optimized numerically at first order (see Section 7 of the paper).
