@@ -1,0 +1,14 @@
+causal fixed point: checks [     0 s]
+  n=400 trap m=12: max|Phi_m - Phi_causal| 1.94e-07  max|G_m - G_causal| inf  M_m +0.01313
+  n=400 trap m=20: max|Phi_m - Phi_causal| 3.99e-13  max|G_m - G_causal| inf  M_m +0.01313
+  n=400 trap m=30: max|Phi_m - Phi_causal| 6.92e-15  max|G_m - G_causal| inf  M_m +0.01313
+  n=400 trap m=40: max|Phi_m - Phi_causal| 6.92e-15  max|G_m - G_causal| inf  M_m +0.01313
+  causal (rect 400/600): M +0.01313;  causal with its own rect grids nS=120: M +0.01043  [    27 s]
+  n=400 safe m=12: max|Phi_m - Phi_causal| 1.90e-07  max|G_m - G_causal| inf  M_m -0.20534
+  n=400 safe m=20: max|Phi_m - Phi_causal| 4.62e-13  max|G_m - G_causal| inf  M_m -0.20534
+  n=400 safe m=30: max|Phi_m - Phi_causal| 6.71e-15  max|G_m - G_causal| inf  M_m -0.20534
+  n=400 safe m=40: max|Phi_m - Phi_causal| 6.71e-15  max|G_m - G_causal| inf  M_m -0.20534
+  causal (rect 400/600): M -0.20534;  causal with its own rect grids nS=120: M -0.20704  [    55 s]
+  eta=1e-7 n=1600 trap: Phi - f at (1/2,.37) +0.00000 (1/2,.42) +0.00003 (1/2,.46) +0.00001; G - F at (.15,.35) -0.00005  [    75 s]
+  eta=1e-7 n=1600 safe: Phi - f at (1/2,.37) -0.00001 (1/2,.42) +0.00001 (1/2,.46) +0.00000; G - F at (.15,.35) -0.00005  [    96 s]
+done [    96 s]

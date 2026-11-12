@@ -1,0 +1,10 @@
+engine against the 12-step iteration of iterated_buchstab.py [     0 s]
+  n= 400 trap: 12-step iteration 13.4 s (12 steps of the O(n^3) recursion, plus the rectangle tables); engine sweep 0.03 s on the same rectangle tables (max |dPhi| 1.9e-07, |dG| 1.4e-07; the iteration is not yet at its fixed point at m = 12), 1.4 s with its own nS=120 tables
+        margins: iteration m=12 +0.01313, engine (same tables) +0.01313, engine (nS=120) +0.01043  [    16 s]
+  n= 400 safe: 12-step iteration 11.9 s (12 steps of the O(n^3) recursion, plus the rectangle tables); engine sweep 0.03 s on the same rectangle tables (max |dPhi| 1.9e-07, |dG| 9.6e-08; the iteration is not yet at its fixed point at m = 12), 1.1 s with its own nS=120 tables
+        margins: iteration m=12 -0.20534, engine (same tables) -0.20534, engine (nS=120) -0.20704  [    29 s]
+  n=1600 trap: 12-step iteration 575.6 s (12 steps of the O(n^3) recursion, plus the rectangle tables); engine sweep 0.27 s on the same rectangle tables (max |dPhi| 1.4e-07, |dG| 1.1e-07; the iteration is not yet at its fixed point at m = 12), 27.0 s with its own nS=120 tables
+        margins: iteration m=12 +0.02503, engine (same tables) +0.02503, engine (nS=120) +0.02398  [   632 s]
+  n=1600 safe: 12-step iteration 544.0 s (12 steps of the O(n^3) recursion, plus the rectangle tables); engine sweep 0.22 s on the same rectangle tables (max |dPhi| 1.8e-07, |dG| 1.4e-07; the iteration is not yet at its fixed point at m = 12), 33.4 s with its own nS=120 tables
+        margins: iteration m=12 -0.03035, engine (same tables) -0.03034, engine (nS=120) -0.03125  [  1210 s]
+done [  1210 s]

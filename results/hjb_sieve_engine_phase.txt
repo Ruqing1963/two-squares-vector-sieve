@@ -1,0 +1,28 @@
+free boundary of the fixed point, n = 1600, trapezoid rule [     0 s]
+  e = 0.011:
+    X=0.50: active a in [0.0006, 0.4838] (X - a_max = 0.0162 = 1.48 e); cut theta0* > h for 0 columns
+    X=0.40: active a in [0.0006, 0.3838] (X - a_max = 0.0162 = 1.48 e); cut theta0* > h for 0 columns
+    X=0.30: active a in [0.0006, 0.2838] (X - a_max = 0.0162 = 1.48 e); cut theta0* > h for 0 columns
+    X=0.20: active a in [0.0006, 0.1837] (X - a_max = 0.0163 = 1.48 e); cut theta0* > h for 0 columns
+    X=0.15: active a in [0.0006, 0.1338] (X - a_max = 0.0162 = 1.48 e); cut theta0* > h for 0 columns
+    X=0.10: active a in [0.0006, 0.0838] (X - a_max = 0.0163 = 1.48 e); cut theta0* > h for 0 columns
+    X=0.07: active a in [0.0009, 0.0537] (X - a_max = 0.0163 = 1.48 e); cut theta0* > h for 170 columns, e.g. a=0.0537 -> theta0*=0.0006
+    X=0.05: active a in [0.0013, 0.0338] (X - a_max = 0.0163 = 1.48 e); cut theta0* > h for 105 columns, e.g. a=0.0338 -> theta0*=0.0009
+    G at X = 1/2: cut index > 1 in 0 of 1599 columns; max theta0* = 0.0003
+    G at X = 0.10: theta0* > h in 0 columns; at a = 0.3: theta0* = 0.0003, at a = 0.1: 0.0003
+    G at X = 0.05: theta0* > h in 1598 columns; at a = 0.3: theta0* = 0.0009, at a = 0.1: 0.0009
+    G at X = 0.03: theta0* > h in 1598 columns; at a = 0.3: theta0* = 0.0025, at a = 0.1: 0.0025
+  e = 0.005:
+    X=0.50: active a in [0.0006, 0.4925] (X - a_max = 0.0075 = 1.50 e); cut theta0* > h for 0 columns
+    X=0.40: active a in [0.0006, 0.3925] (X - a_max = 0.0075 = 1.50 e); cut theta0* > h for 0 columns
+    X=0.30: active a in [0.0006, 0.2925] (X - a_max = 0.0075 = 1.50 e); cut theta0* > h for 0 columns
+    X=0.20: active a in [0.0006, 0.1925] (X - a_max = 0.0075 = 1.50 e); cut theta0* > h for 0 columns
+    X=0.15: active a in [0.0006, 0.1425] (X - a_max = 0.0075 = 1.50 e); cut theta0* > h for 0 columns
+    X=0.10: active a in [0.0006, 0.0925] (X - a_max = 0.0075 = 1.50 e); cut theta0* > h for 0 columns
+    X=0.07: active a in [0.0006, 0.0625] (X - a_max = 0.0075 = 1.50 e); cut theta0* > h for 0 columns
+    X=0.05: active a in [0.0006, 0.0425] (X - a_max = 0.0075 = 1.50 e); cut theta0* > h for 0 columns
+    G at X = 1/2: cut index > 1 in 0 of 1599 columns; max theta0* = 0.0003
+    G at X = 0.10: theta0* > h in 0 columns; at a = 0.3: theta0* = 0.0003, at a = 0.1: 0.0003
+    G at X = 0.05: theta0* > h in 0 columns; at a = 0.3: theta0* = 0.0003, at a = 0.1: 0.0003
+    G at X = 0.03: theta0* > h in 0 columns; at a = 0.3: theta0* = 0.0003, at a = 0.1: 0.0003
+figure written [    82 s]

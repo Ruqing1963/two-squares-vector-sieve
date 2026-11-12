@@ -1,0 +1,20 @@
+application 2: switched term times the Lichtman-Li factor 0.7834 (effective level 0.6382) [     0 s]
+  L=1.0 r= 5  n=400 trap: eta 0.0250 th 0.3300  M -0.0311 ( -1.4%)  main 2.2118  sw 2.2428  Phi 0.74628  u0 0.382  1/lam 3.38
+        n=1600 trapezoid: M -0.0273 ( -1.2%)  main 2.2156  sw 2.2428  Phi 0.74675  u0 0.382  1/lam 3.38  [    42 s]
+        n=1600 one-sided: M -0.0518 ( -2.4%)  main 2.1910  sw 2.2428  Phi 0.74364  u0 0.382  1/lam 3.38  [    66 s]
+  L=1.0 r= 6  n=400 trap: eta 0.0150 th 0.3300  M +0.4786 (+14.5%)  main 3.2998  sw 2.8211  Phi 0.77741  u0 0.370  1/lam 4.30
+        n=1600 trapezoid: M +0.4836 (+14.6%)  main 3.3047  sw 2.8211  Phi 0.77789  u0 0.370  1/lam 4.30  [    93 s]
+        n=1600 one-sided: M +0.4535 (+13.8%)  main 3.2746  sw 2.8211  Phi 0.77492  u0 0.370  1/lam 4.30  [   118 s]
+  L=1.5 r= 8  n=400 trap: eta 0.0120 th 0.3950  M +0.2481 ( +9.7%)  main 2.5634  sw 2.3153  Phi 0.60761  u0 0.316  1/lam 5.84
+        n=1600 trapezoid: M +0.2607 (+10.1%)  main 2.5760  sw 2.3153  Phi 0.60898  u0 0.316  1/lam 5.84  [   160 s]
+        n=1600 one-sided: M +0.2149 ( +8.5%)  main 2.5302  sw 2.3153  Phi 0.60401  u0 0.316  1/lam 5.84  [   186 s]
+  L=1.5 r= 9  n=400 trap: eta 0.0080 th 0.3950  M +0.6070 (+17.9%)  main 3.3847  sw 2.7776  Phi 0.62689  u0 0.307  1/lam 6.74
+        n=1600 trapezoid: M +0.6218 (+18.3%)  main 3.3994  sw 2.7776  Phi 0.62820  u0 0.307  1/lam 6.74  [   211 s]
+        n=1600 one-sided: M +0.5655 (+16.9%)  main 3.3431  sw 2.7776  Phi 0.62320  u0 0.307  1/lam 6.74  [   237 s]
+  L=3.0 r=14  n=400 trap: eta 0.0050 th 0.4500  M +0.2923 (+11.0%)  main 2.6517  sw 2.3594  Phi 0.42578  u0 0.231  1/lam 10.67
+        n=1600 trapezoid: M +0.3315 (+12.3%)  main 2.6909  sw 2.3594  Phi 0.42894  u0 0.231  1/lam 10.67  [   281 s]
+        n=1600 one-sided: M +0.2235 ( +8.7%)  main 2.5829  sw 2.3594  Phi 0.42027  u0 0.231  1/lam 10.67  [   307 s]
+  L=3.0 r=15  n=400 trap: eta 0.0040 th 0.4550  M +0.5098 (+18.6%)  main 2.7476  sw 2.2379  Phi 0.40761  u0 0.228  1/lam 11.60
+        n=1600 trapezoid: M +0.5646 (+20.1%)  main 2.8024  sw 2.2379  Phi 0.41160  u0 0.228  1/lam 11.60  [   334 s]
+        n=1600 one-sided: M +0.4344 (+16.3%)  main 2.6723  sw 2.2379  Phi 0.40217  u0 0.228  1/lam 11.60  [   362 s]
+done [   362 s]

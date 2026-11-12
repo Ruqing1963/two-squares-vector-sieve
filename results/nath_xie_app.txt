@@ -1,0 +1,15 @@
+constants: C = 1.772720, kappa = 1.159643, c1 = 1.202503, c2 = 0.660162, c3 = 1.060689, A = C kappa e^{-3 gamma/2}/4 = 0.216213
+Nath-Xie point (lam, th, th1, th2) = (0.17, 0.25, 0.449, 0.011): f = 0.12570, I = 3.50992, C(th1) = 0.09085; main 3.6872, switched 20.4500, lam*Richert 17.5030
+  H = -34.2658 (Nath-Xie: 1.2690); 1/lam + 1/th = 9.8824 (9.8824)  [     7 s]
+
+minimum of 1/lam + 1/th with H >= 0 (n = 400; theta1 on the grid, step 0.0025)
+  rectangle (m = 0): min 1/lam + 1/th = 84.8456  => omega(p+2) <= 84   at th1 0.4825 th2 0.0020 th 0.0356 lam 0.0176; main 28.4122 switched 20.4026 lam*Richert 8.0096 Phi 0.18256  [   103 s]
+  fixed point, trapezoid: min 1/lam + 1/th = 60.9490  => omega(p+2) <= 60   at th1 0.4825 th2 0.0020 th 0.0553 lam 0.0233; main 33.2959 switched 20.4026 lam*Richert 12.8933 Phi 0.21394  [   193 s]
+  fixed point, one-sided: min 1/lam + 1/th = 81.0309  => omega(p+2) <= 81   at th1 0.4825 th2 0.0020 th 0.0376 lam 0.0184; main 28.9780 switched 20.4026 lam*Richert 8.5754 Phi 0.18619  [   282 s]
+
+fixed point at the trapezoid optimum on n = 800 and 1600, both rules
+  n=800 trapezoid: min 1/lam + 1/th = 57.9994 => omega <= 57 (th 0.0592 lam 0.0243 main 34.2226 switched 20.4026)  [   296 s]
+  n=800 one-sided: min 1/lam + 1/th = 76.4363 => omega <= 76 (th 0.0415 lam 0.0191 main 29.7425 switched 20.4026)  [   308 s]
+  n=1600 trapezoid: min 1/lam + 1/th = 56.8616 => omega <= 56 (th 0.0612 lam 0.0247 main 34.6089 switched 20.4026)  [   363 s]
+  n=1600 one-sided: min 1/lam + 1/th = 65.9057 => omega <= 65 (th 0.0513 lam 0.0215 main 31.9557 switched 20.4026)  [   419 s]
+done [   419 s]

@@ -30,6 +30,13 @@ Contents:
   Modes: `python iterated_buchstab.py` (all, about 10 minutes), `fine`, `safe`, `safe1600` (one-sided rule on n = 1600, about 25 minutes), `curve` (Figure 1 data),
   and two planning probes for the next part: `retune` (fine retuning of r = 9 and r = 15, with Richardson extrapolation) and `whatif` (margins if the switched term had level theta_sw > 1/2).
 - `code/switch_probe.py`: a Buchstab step on the switched sequence reproduces 2 e^gamma exactly (no gain); lists the level theta_sw needed for r = 6, 9, 15.
+- Planning for the next part (not used in the paper):
+  - `code/causal_fixed_point.py`: the fixed point of the recursion in one causal O(n^2) sweep (row X only reads rows below X; the cut
+    search is a cumulative max), bit-identical to the m-iteration at m >= 30; modes `check`, `run` (n up to 12800), `boundary`.
+  - `code/hjb_sieve_engine.py`: the same engine for an auxiliary sieve of dimension 1/2 or 1 (class `Engine`); modes `verify`,
+    `phase` (optimal-cut maps, `figures/hjb_phase.pdf`), `app2 <factor>` (switched term times a factor).
+  - `code/lichtman_level.py`: the variable level theta_1(t) of Lichtman (arXiv:2309.08522, (6.2), (6.4)) and Li's switched bracket G_1 (arXiv:2405.05727, (28)-(29)).
+  - `code/nath_xie_app.py`, `code/nath_xie_check.py`: the problem of Nath-Xie (arXiv:2501.16723) with the fixed point, and the check of their numerics.
 - `code/sieve_margin_figure.py`: draws Figure 1 from the saved curves of the two scripts above.
 - `code/check_richert_grid.py`: grid convergence of the one-step margins (cuts, Richert integral, J_lambda) at the optima, and the eta -> 0 check of the one-step identity.
 - `code/nano_sieve_probe.py`: probe of Buchstab steps on the inert primes and on the split primes (the latter gains nothing).

@@ -1,0 +1,18 @@
+constants as coded: C = 1.772721 kappa = 1.159643 c1 = 1.202491 c2 = 0.660168 c3 (truncated at 1e4, as coded) = 1.061373; c3 in convergent form = 1.060689; prefactor 0.216213
+linear sieve at s = 3, 4, 5: as coded F2 = 0.6549 0.9389 1.2162, f2 = 1.4756 1.1981 0.9086;  correct F2 = 1.1874 1.0216 1.0017, f2 = 0.8230 0.9784 0.9982
+
+code's functions, c3 and C(theta1) as coded:
+  f(sigma1, sigma2) = 1.50579 at (s1, s2) = (1.0355, 3.1873); I = 1.11011; C(theta1) = 0.08989
+  main 44.1704  switched 20.2478  lambda*Richert 5.5358  =>  H = 18.3868   (paper: 1.2690)
+
+correct linear sieve, same constants:
+  f(sigma1, sigma2) = 0.12845 at (s1, s2) = (1.0155, 4.0036); I = 1.68172; C(theta1) = 0.08989
+  main 3.7680  switched 20.2478  lambda*Richert 8.3863  =>  H = -24.8661   (paper: 1.2690)
+
+correct linear sieve, convergent c3, C(theta1) as in the paper:
+  f(sigma1, sigma2) = 0.12845 at (s1, s2) = (1.0155, 4.0036); I = 1.68172; C(theta1) = 0.09088
+  main 3.7680  switched 20.4561  lambda*Richert 8.3863  =>  H = -25.0744   (paper: 1.2690)
+
+unweighted G(0.4230, 0.0249) with code's functions: f = 1.35498, G = 0.111945 (paper: 0.001378)
+
+unweighted G(0.4230, 0.0249) with correct: f = -0.40038, G = -23.323770 (paper: 0.001378)

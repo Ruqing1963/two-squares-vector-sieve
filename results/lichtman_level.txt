@@ -1,0 +1,17 @@
+linear sieve: F(1) = 3.56214, 4 e^gamma = 7.12429, F(3) = 1.18738, f(4) = 0.97835, F(10) = 1.000000
+Lichtman level, alpha = 1, theta = 7/32: mu = 0.19531, theta(mu) = 0.59766 = 153/256 = 0.59766, theta(u,u,u) at u = 1/500: 0.596906 = 19101/32000 = 0.596906
+
+check level 1/2, grids (2000,300,100): bracket = 6.42000 (should be 4 e^gamma = 7.12429); parts 500.0000 2290.7288 5247.6030 3450.4541
+check level 1/2, grids (4000,600,200): bracket = 7.31519 (should be 4 e^gamma = 7.12429); parts 500.0000 2290.7273 5247.4726 3449.4301
+check level 1/2, grids (8000,900,300): bracket = 7.47913 (should be 4 e^gamma = 7.12429); parts 500.0000 2290.7270 5247.4486 3449.2425
+
+Lichtman level, grids (2000,300,100): G1 = 4.87397 (Li: 6.06932); factor G1/(4 e^gamma) = 0.68413; parts 500.0000 2290.7288 5247.6030 3452.0001
+Lichtman level, grids (4000,600,200): G1 = 5.77132 (Li: 6.06932); factor G1/(4 e^gamma) = 0.81009; parts 500.0000 2290.7273 5247.4726 3450.9740
+Lichtman level, grids (8000,900,300): G1 = 5.93565 (Li: 6.06932); factor G1/(4 e^gamma) = 0.83316; parts 500.0000 2290.7270 5247.4486 3450.7860
+
+same-grid differences: G1 = 4 e^gamma - (T3[level] - T3[1/2])
+  grids (4000,600,200): (a) (6.4): G1 = 5.5804, factor 0.7833;  (b) theta(t1) only: G1 = 5.6448, factor 0.7923;  (c) w(t2,t1,t3) variant: G1 = 5.5804, factor 0.7833
+  grids (8000,900,300): (a) (6.4): G1 = 5.5808, factor 0.7834;  (b) theta(t1) only: G1 = 5.6452, factor 0.7924;  (c) w(t2,t1,t3) variant: G1 = 5.5808, factor 0.7834
+  grids (8000,900,450): (a) (6.4): G1 = 5.5810, factor 0.7834;  (b) theta(t1) only: G1 = 5.6454, factor 0.7924;  (c) w(t2,t1,t3) variant: G1 = 5.5810, factor 0.7834
+
+Li's value 6.06932 corresponds to the factor 0.8519; variant (a) gives 0.7834 (effective level 0.6383)
