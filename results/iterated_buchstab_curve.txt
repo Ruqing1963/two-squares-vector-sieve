@@ -1,0 +1,47 @@
+(xi) fixed point (m = 12) against r, n = 400, retuned over eta and theta [    0 s]
+  L=1.0 eta=0.0060 done [   25 s]
+  L=1.0 eta=0.0080 done [   46 s]
+  L=1.0 eta=0.0100 done [   66 s]
+  L=1.0 eta=0.0120 done [   83 s]
+  L=1.0 eta=0.0150 done [  100 s]
+  L=1.0 eta=0.0200 done [  113 s]
+  L=1.0 r= 6  eta 0.0200 th 0.365  M -0.1400 ( -6.6%)  main 2.1181  sw 2.2582  Phi 0.66744  Rint 2.8628  u0 0.351  1/lam 4.15
+  L=1.0 r= 7  eta 0.0150 th 0.370  M +0.2676 ( +9.9%)  main 2.7119  sw 2.4443  Phi 0.67347  Rint 3.1136  u0 0.329  1/lam 4.96
+  L=1.0 r= 8  eta 0.0100 th 0.375  M +0.6688 (+19.5%)  main 3.4371  sw 2.7683  Phi 0.67901  Rint 3.6006  u0 0.325  1/lam 5.92
+  L=1.0 r= 9  eta 0.0060 th 0.380  M +1.1003 (+25.1%)  main 4.3774  sw 3.2771  Phi 0.68010  Rint 4.2701  u0 0.326  1/lam 6.94
+  L=1.0 r=10  eta 0.0060 th 0.380  M +1.4816 (+30.7%)  main 4.8263  sw 3.3447  Phi 0.68010  Rint 4.1157  u0 0.297  1/lam 7.63
+  L=1.0 r=11  eta 0.0060 th 0.385  M +1.7897 (+36.0%)  main 4.9681  sw 3.1784  Phi 0.66582  Rint 3.9944  u0 0.271  1/lam 8.30
+  => L=1.0: r_0 = 7 at the fixed point
+  L=1.5 eta=0.0040 done [  148 s]
+  L=1.5 eta=0.0050 done [  176 s]
+  L=1.5 eta=0.0060 done [  195 s]
+  L=1.5 eta=0.0080 done [  212 s]
+  L=1.5 eta=0.0100 done [  228 s]
+  L=1.5 eta=0.0120 done [  242 s]
+  L=1.5 r= 9  eta 0.0100 th 0.420  M +0.0045 ( +0.2%)  main 2.1756  sw 2.1711  Phi 0.52673  Rint 3.6748  u0 0.300  1/lam 6.67
+  L=1.5 r=10  eta 0.0080 th 0.420  M +0.3027 (+11.2%)  main 2.7101  sw 2.4075  Phi 0.53882  Rint 3.8630  u0 0.282  1/lam 7.46
+  L=1.5 r=11  eta 0.0050 th 0.425  M +0.6058 (+18.4%)  main 3.2919  sw 2.6861  Phi 0.53664  Rint 4.5671  u0 0.292  1/lam 8.57
+  L=1.5 r=12  eta 0.0040 th 0.425  M +0.9276 (+23.7%)  main 3.9187  sw 2.9912  Phi 0.54223  Rint 4.7915  u0 0.279  1/lam 9.42
+  L=1.5 r=13  eta 0.0040 th 0.425  M +1.2251 (+28.8%)  main 4.2477  sw 3.0226  Phi 0.54223  Rint 4.6571  u0 0.257  1/lam 10.11
+  L=1.5 r=14  eta 0.0040 th 0.430  M +1.4771 (+35.0%)  main 4.2197  sw 2.7425  Phi 0.52267  Rint 4.5826  u0 0.242  1/lam 10.86
+  => L=1.5: r_0 = 9 at the fixed point
+  L=3.0 eta=0.0020 done [  304 s]
+  L=3.0 eta=0.0025 done [  356 s]
+  L=3.0 eta=0.0030 done [  401 s]
+  L=3.0 eta=0.0040 done [  430 s]
+  L=3.0 eta=0.0050 done [  455 s]
+  L=3.0 eta=0.0060 done [  477 s]
+  L=3.0 r=15  eta 0.0050 th 0.460  M -0.0296 ( -1.4%)  main 2.1540  sw 2.1836  Phi 0.37060  Rint 4.2282  u0 0.214  1/lam 11.33
+  L=3.0 r=16  eta 0.0040 th 0.465  M +0.1542 ( +7.2%)  main 2.1408  sw 1.9866  Phi 0.34958  Rint 4.5602  u0 0.213  1/lam 12.32
+  L=3.0 r=17  eta 0.0030 th 0.465  M +0.3435 (+13.2%)  main 2.6043  sw 2.2608  Phi 0.35974  Rint 4.9620  u0 0.213  1/lam 13.30
+  L=3.0 r=18  eta 0.0025 th 0.465  M +0.5368 (+17.9%)  main 2.9987  sw 2.4619  Phi 0.36463  Rint 5.2066  u0 0.211  1/lam 14.26
+  L=3.0 r=19  eta 0.0020 th 0.465  M +0.7462 (+21.5%)  main 3.4781  sw 2.7319  Phi 0.36994  Rint 5.4974  u0 0.208  1/lam 15.18
+  L=3.0 r=20  eta 0.0020 th 0.465  M +0.9400 (+25.5%)  main 3.6822  sw 2.7422  Phi 0.36994  Rint 5.3956  u0 0.195  1/lam 15.88
+  L=3.0 r=21  eta 0.0020 th 0.465  M +1.1137 (+28.8%)  main 3.8659  sw 2.7521  Phi 0.36994  Rint 5.3159  u0 0.186  1/lam 16.62
+  => L=3.0: r_0 = 16 at the fixed point
+
+  rectangle bounds (m = 0) at the parameters of Table 1, n = 1600:
+  L=1.0 r=7 eta=0.0150 th=0.370 n=1600 m=0: M -0.1794 ( -7.9%)  main 2.2649  sw 2.4443  Phi 0.62254  Rint 3.1968  u0 0.329  1/lam 4.96  [  549 s]
+  L=1.5 r=10 eta=0.0100 th=0.420 n=1600 m=0: M -0.2026 (-10.2%)  main 1.9954  sw 2.1979  Phi 0.47456  Rint 3.5486  u0 0.268  1/lam 7.26  [  621 s]
+  L=3.0 r=16 eta=0.0050 th=0.460 n=1600 m=0: M -0.3593 (-19.6%)  main 1.8338  sw 2.1930  Phi 0.32983  Rint 4.1437  u0 0.199  1/lam 11.96  [  691 s]
+done [  691 s]

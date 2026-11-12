@@ -275,35 +275,10 @@ if __name__ == "__main__":
     np.save(os.path.join(RES, "semilinear_curves.npy"), {"buchstab": {str(k): v for k, v in curves.items()}, "rectangle": {str(k): v for k, v in rects.items()},
                                                          "weight1": {str(k): v for k, v in olds.items()}}, allow_pickle=True)
 
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    plt.rcParams.update({"pdf.fonttype": 42, "ps.fonttype": 42, "mathtext.fontset": "cm"})
-    fig, ax = plt.subplots(1, 2, figsize=(10, 3.8))
-    cols = {1.0: "C0", 1.5: "C1", 3.0: "C3"}
-    for L, data in curves.items():
-        rr = [d[0] for d in data]; MM = [d[1] / d[2] for d in data]
-        ax[0].plot(rr, MM, "o-", color=cols[L], label=r"$L=%g$" % L)
-        ax[0].plot([d[0] for d in rects[L]], [d[1] / d[2] for d in rects[L]], "--", color=cols[L], lw=1)
-        ax[0].plot([d[0] for d in olds[L]], [d[1] / d[2] for d in olds[L]], ":", color=cols[L], lw=1)
-        rmin = min([d[0] for d in data if d[1] > 0])
-        off = {1.0: (-40, 8), 1.5: (10, -24), 3.0: (10, -24)}[L]
-        ax[0].annotate(r"$r_0=%d$" % rmin, (rmin, [d[1] / d[2] for d in data if d[0] == rmin][0]),
-                       textcoords="offset points", xytext=off, color=cols[L], fontsize=10)
-    ax[0].axhline(0, color="k", lw=0.8)
-    ax[0].set_xlabel(r"$r$"); ax[0].set_ylabel(r"(main $-$ switched)/main")
-    ax[0].plot([], [], "k--", lw=1, label="rectangle bounds")
-    ax[0].plot([], [], "k:", lw=1, label="rectangle, bad survivors at weight 1")
-    ax[0].set_title("Richert-weighted margin"); ax[0].legend(frameon=False, fontsize=9)
-    for L, data in curves.items():
-        rr = [d[0] for d in data]
-        ax[1].plot(rr, [d[2] for d in data], "-", color=cols[L])
-        ax[1].plot(rr, [d[3] for d in data], "--", color=cols[L])
-    ax[1].plot([], [], "k-", label="weighted main term"); ax[1].plot([], [], "k--", label=r"switched term $8LJ_\lambda$")
-    ax[1].set_xlabel(r"$r$"); ax[1].set_ylabel(r"units of $2\mathcal{B}$")
-    ax[1].set_title("main term and switched term at the optimum"); ax[1].legend(frameon=False, fontsize=9)
-    fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "sieve_margin.pdf")); fig.savefig(os.path.join(FIG, "sieve_margin.png"), dpi=150)
+    # Figure 1 is drawn by sieve_margin_figure.py from this file's curves and from the fixed-point curves of iterated_buchstab.py
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("smf", os.path.join(HERE, "sieve_margin_figure.py"))
+    smf = importlib.util.module_from_spec(spec); spec.loader.exec_module(smf); smf.draw()
     say("\nfigure written; total time %.0f s" % (time.time() - t0))
 
 
