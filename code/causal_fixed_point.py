@@ -155,6 +155,87 @@ if MODE == "boundary":
             say("           Phi: cut < a for a in [%.4f, %.4f] (%d of %d columns)" % (nz[0] * h, nz[-1] * h, len(nz), min(i, n) - 1) if nz else "           Phi: cut always trivial")
     say("done " + clock()); sys.exit(0)
 
+if MODE == "lowmem":
+    # Memory-light sweep for large n.  Rows of Phi_0, G_0 are generated on the fly.  Half-level scaling: for a >= X/2 every
+    # s3 = (X - e s1)/a is < 2, where F(s3) = 2e^{gamma/2}/sqrt(pi s3) is proportional to sqrt(a); so G_0(X; e, a)/sqrt(a) is
+    # constant for a >= X/2, and since Phi(X - b; e, b) = 0 for b >= X/2 the cells of the G-recursion vanish there: the fixed
+    # point satisfies G(X; e, a) = sqrt(a / a_half) G(X; e, a_half) for a >= a_half = X/2 (exactly, on the grid as well).
+    # Storage by anti-diagonals s = i + j <= n (row i' reads exactly the anti-diagonal s = i'): G is stored for l <= (s+1)/3
+    # and otherwise given by the scalar v_{i} = G(i, ceil(i/2))/sqrt(a_{ceil(i/2)}); Phi is stored for l < s/2 (zero beyond).
+    # Env: CFP_LM="L,r,eta,theta", CFP_N="1600,12800", CFP_RULES="safe,trap".  Output: results/causal_fixed_point_lowmem.txt
+    L, r, eta, th = [float(x) for x in os.environ.get("CFP_LM", "3.0,15,0.005,0.4625").split(",")]; r = int(r)
+    NS = [int(x) for x in os.environ.get("CFP_N", "1600,12800").split(",")]
+    RULES = os.environ.get("CFP_RULES", "safe,trap").split(",")
+    say("low-memory causal sweep with the half-level scaling: L=%.1f r=%d eta=%.4f th=%.4f " % (L, r, eta, th) + clock())
+    def sweep_lowmem(n, safe, nS=120):
+        h = 0.5 / n; jt = int(round(th / h)); assert abs(jt * h - th) < 1e-9
+        a = np.arange(0, n + 2) * h; ra = np.zeros(n + 2); ra[1:] = a[1:] ** -0.5; sa = np.sqrt(a)
+        u = np.linspace(0.0, 1.0, nS)
+        s = np.arange(0, n + 2)
+        LG = np.clip((s + 1) // 3, 0, None); LP = np.clip((s - 1) // 2, 0, None)      # stored lengths of diagonal s
+        offG = np.concatenate([[0], np.cumsum(LG)]).astype(np.int64); offP = np.concatenate([[0], np.cumsum(LP)]).astype(np.int64)
+        Gf = np.zeros(offG[n + 1], np.float32); Pf = np.zeros(offP[n + 1], np.float32)
+        v = np.zeros(n + 1)                           # v[i] = G(i, ceil(i/2)) / sqrt(a_{ceil(i/2)})
+        Phn = 0.0
+        for i in range(1, n + 1):
+            X = i * h; J = max(min(i - 1, jt), 1); jg = (i + 1) // 2
+            # rectangle rows: Phi_0 for j = 1..J, G_0 for j = 1..jg then scaled
+            aj = a[1:J + 1]; P0 = np.zeros(J)
+            smax = (X - aj) / eta; ok = np.nonzero(smax > 1.0)[0]
+            if len(ok):
+                s1 = smax[ok, None] ** u[None, :]; s3 = (X - eta * s1) / aj[ok, None]
+                P0[ok] = np.maximum(0.0, (lk(f12, s1) * lk(F12, s3) + lk(F12, s1) * lk(f12, s3) - lk(F12, s1) * lk(F12, s3)).max(axis=1))
+            s1 = np.geomspace(1e-4, X / eta * (1 - 1e-6), nS); F1 = lk(F12, s1)
+            s3 = (X - eta * s1[None, :]) / a[1:jg + 1, None]
+            G0g = (F1[None, :] * np.where(s3 >= 1e-4, lk(F12, s3), np.inf)).min(axis=1)
+            # cells l = 1..J-1: endpoint values G(i-l, l), Phi(i-l, l) from the anti-diagonal s = i
+            l = np.arange(1, J + 1)
+            Hg = np.zeros(J); Hp = np.zeros(J)
+            if i >= 2:
+                m = min(J, i - 1); ll = l[:m]
+                nG = min(m, LG[i]); Hg[:nG] = Gf[offG[i]:offG[i] + nG]
+                if m > nG: Hg[nG:m] = sa[ll[nG:]] * v[i - ll[nG:]]
+                nP = min(m, LP[i]); Hp[:nP] = Pf[offP[i]:offP[i] + nP]
+            wc = ra[1:J] - ra[2:J + 1]
+            if safe: cg = np.maximum(Hg[:-1], Hg[1:]); cp = np.minimum(Hp[:-1], Hp[1:])
+            else: cg = 0.5 * (Hg[:-1] + Hg[1:]); cp = 0.5 * (Hp[:-1] + Hp[1:])
+            Kg = np.concatenate([[0.0], np.cumsum(wc * cg)]); Kp = np.concatenate([[0.0], np.cumsum(wc * cp)])
+            rowP = sa[1:J + 1] * (np.maximum.accumulate(P0 * ra[1:J + 1] + Kg) - Kg); rowP[l >= i] = 0.0
+            y = G0g * ra[1:jg + 1] + Kp[:jg]
+            rowG = sa[1:jg + 1] * (np.minimum.accumulate(y) - Kp[:jg])
+            v[i] = rowG[jg - 1] * ra[jg]
+            if i == n: Phn = rowP[jt - 1] if jt <= J else 0.0
+            # store diagonal pieces: (i, j) -> diagonal i + j, position j - 1
+            jmG = min(jg, LG[i + 1:i + jg + 1].max() if jg else 0, n - i)
+            jj = np.arange(1, min(jg, n - i) + 1); keep = jj <= LG[i + jj]
+            if keep.any(): Gf[offG[i + jj[keep]] + jj[keep] - 1] = rowG[jj[keep] - 1]
+            jj = np.arange(1, min(J, n - i) + 1); keep = (jj <= LP[i + jj]) & (jj < i)
+            if keep.any(): Pf[offP[i + jj[keep]] + jj[keep] - 1] = rowP[jj[keep] - 1]
+            if i % 2000 == 0: say("    row %d of %d %s" % (i, n, clock()))
+        Gcol = sa[jt] * v                                   # G(i, j_theta) = sqrt(a_{j_theta}) v_i  (j_theta >= ceil(i/2) for all i <= n)
+        return Gcol, Phn, Gf.nbytes + Pf.nbytes
+    def margin_col(Gcol, Ph, n, nT=240, nu=300):
+        h = 0.5 / n; Xg = np.arange(1, n + 1) * h
+        ts = np.geomspace(eta, 0.49, nT); Gt = np.interp(0.5 - ts, Xg, Gcol[1:n + 1])
+        parts = jparts(eta, th); j0 = ss.Jlam(parts, 0.0, 1.0); best = None
+        for u0 in np.linspace(eta + 0.01, 0.48, nu):
+            il = r + 1 - 1e-6 - 1 / u0
+            if il <= 0: continue
+            lam = 1 / il; k = ts <= u0
+            if k.sum() < 2: continue
+            integ = np.trapz((1 - ts[k] / u0) * Gt[k] / ts[k], ts[k])
+            main = c * (Ph - lam / 2 * integ) / np.sqrt(eta * th)
+            jj = ss.Jlam(parts, lam, u0) if 1 - 2 * th <= u0 else j0
+            M = main - 8 * L * jj
+            if best is None or M > best["M"]: best = dict(M=M, main=main, T=8 * L * jj, u0=u0, ilam=1 / lam, Phi=Ph)
+        return best
+    for n in NS:
+        for rule in RULES:
+            Gcol, Ph, nb = sweep_lowmem(n, rule == "safe")
+            b = margin_col(Gcol, Ph, n)
+            say("  n=%d %s: %s   (tables %.0f MB)  %s" % (n, rule, fmt(b), nb / 1e6, clock()))
+    say("done " + clock()); sys.exit(0)
+
 if MODE == "run":
     say("causal fixed point on n = 1600, 3200, 6400, both rules (nS = 120) " + clock())
     CASES = [(1.5, 9, 0.011, 0.4175), (3.0, 15, 0.005, 0.4625), (1.0, 7, 0.015, 0.370), (1.5, 10, 0.010, 0.420), (3.0, 16, 0.005, 0.460), (1.0, 6, 0.015, 0.370)]

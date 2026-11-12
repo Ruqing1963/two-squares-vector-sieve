@@ -105,4 +105,25 @@ for (m1, m2, m3) in ((4000, 600, 200), (8000, 900, 300), (8000, 900, 450)):
     say("  grids (%d,%d,%d): " % (m1, m2, m3) + ";  ".join(row))
 G1 = results["(a) (6.4)"]
 say("\nLi's value 6.06932 corresponds to the factor %.4f; variant (a) gives %.4f (effective level %.4f)" % (6.06932 / (2 * C), G1 / (2 * C), 1 / (2 * G1 / (2 * C))))
+
+# Independent check of the triple-term difference by the midpoint rule on uniform grids (no cancellation: the difference
+# f(s_L) - f(s_{1/2}) vanishes where both arguments are large, i.e. for small t3, so the integrand is bounded).
+say("\nindependent check: delta T3 = int [f((theta(t1,t2,t3) - S)/t3) - f((1/2 - S)/t3)] / (t1 t2 t3^2), S = t1 + t2 + t3, midpoint rule")
+def dT3(level3, m):
+    u = 1 / 500; mu = MU
+    t1v = u + (mu - u) * (np.arange(m) + 0.5) / m; d1 = (mu - u) / m
+    tot = 0.0
+    for a in t1v:
+        t2v = u + (a - u) * (np.arange(m) + 0.5) / m; d2 = (a - u) / m
+        T2, T3 = np.meshgrid(t2v, np.arange(m) + 0.5, indexing="ij")
+        T3 = u + (T2 - u) * T3 / m; d3 = (T2 - u) / m                 # t3 in [u, t2], own cell width per t2
+        S = a + T2 + T3
+        diff = fv((level3(a, T2, T3) - S) / T3) - fv((0.5 - S) / T3)
+        tot += np.sum(diff / (a * T2 * T3 ** 2) * d3) * d2 * d1
+    return tot
+for m in (100, 200, 400):
+    d = dT3(th3, m)
+    say("  m = %d: delta T3 = %.4f  =>  G1 = %.4f, factor %.4f" % (m, d, 2 * C - d, (2 * C - d) / (2 * C)))
+# where does the difference come from: contributions by t3 ranges
+say("  (Li's 6.06932 would need delta T3 = %.4f)" % (2 * C - 6.06932))
 np.save(os.path.join(HERE, "..", "results", "lichtman_factor.npy"), np.array([G1 / (2 * C), 6.06932 / (2 * C)]))

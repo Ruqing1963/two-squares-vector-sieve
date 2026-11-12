@@ -15,3 +15,9 @@ same-grid differences: G1 = 4 e^gamma - (T3[level] - T3[1/2])
   grids (8000,900,450): (a) (6.4): G1 = 5.5810, factor 0.7834;  (b) theta(t1) only: G1 = 5.6454, factor 0.7924;  (c) w(t2,t1,t3) variant: G1 = 5.5810, factor 0.7834
 
 Li's value 6.06932 corresponds to the factor 0.8519; variant (a) gives 0.7834 (effective level 0.6383)
+
+independent check: delta T3 = int [f((theta(t1,t2,t3) - S)/t3) - f((1/2 - S)/t3)] / (t1 t2 t3^2), S = t1 + t2 + t3, midpoint rule
+  m = 100: delta T3 = 1.5430  =>  G1 = 5.5813, factor 0.7834
+  m = 200: delta T3 = 1.5431  =>  G1 = 5.5812, factor 0.7834
+  m = 400: delta T3 = 1.5432  =>  G1 = 5.5811, factor 0.7834
+  (Li's 6.06932 would need delta T3 = 1.0550)
