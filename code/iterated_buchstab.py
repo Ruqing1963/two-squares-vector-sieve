@@ -195,6 +195,83 @@ if MODE == "curve":
         say("  L=%.1f r=%d eta=%.4f th=%.3f n=1600 m=0: %s  %s" % (L, r, eta, th, fmt(margin(r, L, eta, th, P0, G0, 1600)), clock()))
     say("done " + clock()); sys.exit(0)
 
+if MODE == "retune":
+    # probe A2: fine retuning of (eta, theta, u0) for r = 9 (L = 3/2) and r = 15 (L = 3) at the fixed point;
+    # eta step 0.001, theta step 0.0025 (on the grids n = 400, 800, 1600); then refinement and Richardson extrapolation
+    say("(xii) fine retuning for r = 9 (L = 3/2) and r = 15 (L = 3), m = 12 " + clock())
+    MM = 12
+    for (L, r, etas, ths) in [(1.5, 9, [round(0.007 + 0.001 * i, 3) for i in range(7)], [round(0.4125 + 0.0025 * i, 4) for i in range(9)]),
+                              (3.0, 15, [round(0.003 + 0.001 * i, 3) for i in range(5)], [round(0.4525 + 0.0025 * i, 4) for i in range(9)])]:
+        allb = []
+        for eta in etas:
+            tabs = all_tables(eta, 400, MM); P, G = tabs[MM]
+            for th in ths:
+                b = margin(r, L, eta, th, P, G, 400); allb.append(dict(b, eta=eta, th=th))
+            say("  L=%.1f r=%d eta=%.3f: best over theta %+.4f at theta %.4f  %s" % (L, r, eta, max(x["M"] for x in allb if x["eta"] == eta),
+                max((x for x in allb if x["eta"] == eta), key=lambda x: x["M"])["th"], clock()))
+        allb.sort(key=lambda x: -x["M"])
+        say("  top 3 on n = 400 (trapezoid):")
+        for b in allb[:3]: say("    eta %.3f th %.4f  %s" % (b["eta"], b["th"], fmt(b)))
+        for i, b in enumerate(allb[:3]):
+            eta, th = b["eta"], b["th"]
+            vals = {}
+            for nn in (400, 800, 1600):
+                if nn == 1600 and i > 0: continue
+                for safe in (False, True):
+                    if nn == 1600 and safe and i > 0: continue
+                    tabs = all_tables(eta, nn, MM, safe)
+                    bb = margin(r, L, eta, th, tabs[MM][0], tabs[MM][1], nn); vals[(nn, safe)] = bb["M"]
+                    say("    eta %.3f th %.4f n=%d %s: M_12 %+.4f  (%s)  %s" % (eta, th, nn, "safe" if safe else "trap", bb["M"], fmt(bb), clock()))
+                    del tabs
+            for safe in (False, True):
+                v = [vals.get((nn, safe)) for nn in (400, 800, 1600)]
+                if None in v: continue
+                d1, d2 = v[1] - v[0], v[2] - v[1]
+                if d1 * d2 > 0 and abs(d2) < abs(d1):
+                    p = np.log2(d1 / d2); lim = v[2] + d2 / (2 ** p - 1)
+                    say("    Richardson (%s): differences %+.4f, %+.4f, order p = %.2f, extrapolated limit %+.4f; with p = 1: %+.4f" % (
+                        "safe" if safe else "trap", d1, d2, p, lim, v[2] + d2))
+                else:
+                    say("    Richardson (%s): differences %+.4f, %+.4f, not geometric" % ("safe" if safe else "trap", d1, d2))
+    say("done " + clock()); sys.exit(0)
+
+if MODE == "whatif":
+    # probe A1 (what-if): the switched term at level N^theta_sw instead of N^{1/2} has the constant F_lin(2 theta_sw) = 2 e^gamma / (2 theta_sw),
+    # so M(theta_sw) = main - 8 L J_lambda / (2 theta_sw).  Least r with M > 0 (fixed point m = 12, n = 400, retuned) for several theta_sw.
+    say("(xiii) what-if levels theta_sw for the switched term; fixed point m = 12, n = 400, retuned over eta, theta, u0 " + clock())
+    THS = [0.5, 0.51, 0.525, 0.55, 0.597]
+    setups = {1.0: ([0.006, 0.008, 0.01, 0.012, 0.015, 0.02, 0.025], range(4, 10)),
+              1.5: ([0.004, 0.005, 0.006, 0.008, 0.01, 0.012, 0.015], range(6, 13)),
+              3.0: ([0.002, 0.0025, 0.003, 0.004, 0.005, 0.006, 0.008], range(11, 19))}
+    ths = [round(x, 4) for x in np.arange(0.33, 0.4951, 0.005)]
+    n = 400; MM = 12; h = 0.5 / n
+    for L, (etas, rs) in setups.items():
+        best = {}
+        for eta in etas:
+            tabs = all_tables(eta, n, MM); P, G = tabs[MM]
+            Xg = np.arange(1, n + 1) * h; ts = np.geomspace(eta, 0.49, 240)
+            for th in ths:
+                j = int(round(th / h)); Gt = np.interp(0.5 - ts, Xg, G[1:, j]); Ph = P[n, j]
+                parts = jparts(eta, th); j0 = ss.Jlam(parts, 0.0, 1.0)
+                for r in rs:
+                    for u0 in np.linspace(eta + 0.01, 0.48, 300):
+                        il = r + 1 - 1e-6 - 1 / u0
+                        if il <= 0: continue
+                        lam = 1 / il; k = ts <= u0
+                        if k.sum() < 2: continue
+                        integ = np.trapz((1 - ts[k] / u0) * Gt[k] / ts[k], ts[k])
+                        main = c * (Ph - lam / 2 * integ) / np.sqrt(eta * th)
+                        T = 8 * L * (ss.Jlam(parts, lam, u0) if 1 - 2 * th <= u0 else j0)
+                        for tsw in THS:
+                            M = main - T / (2 * tsw)
+                            if (r, tsw) not in best or M > best[(r, tsw)][0]: best[(r, tsw)] = (M, main, T, eta, th, u0)
+            say("  L=%.1f eta=%.4f done %s" % (L, eta, clock()))
+        say("  L=%.1f: margin M(theta_sw) (trapezoid, n = 400); rows r, columns theta_sw = %s" % (L, THS))
+        for r in rs:
+            say("    r=%2d: " % r + "  ".join("%+.3f" % best[(r, t)][0] for t in THS) + "   (theta_sw = 1/2 optimum: eta %.4f th %.3f u0 %.3f)" % best[(r, 0.5)][3:6])
+        say("    least r with M > 0: " + ", ".join("theta_sw %.3f -> r_0 = %s" % (t, min([r for r in rs if best[(r, t)][0] > 0], default="none")) for t in THS))
+    say("done " + clock()); sys.exit(0)
+
 if MODE == "safe1600":
     say("(x) one-sided cell rule at n = 1600, m = 12 " + clock())
     for (L, rs, eta, th) in [(3.0, (15, 16), 0.005, 0.460), (1.0, (6, 7), 0.015, 0.370), (1.5, (9, 10), 0.010, 0.420)]:

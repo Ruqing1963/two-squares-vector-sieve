@@ -1,0 +1,54 @@
+(xii) fine retuning for r = 9 (L = 3/2) and r = 15 (L = 3), m = 12 [    0 s]
+  L=1.5 r=9 eta=0.007: best over theta -0.0627 at theta 0.4175  [   10 s]
+  L=1.5 r=9 eta=0.008: best over theta -0.0234 at theta 0.4175  [   20 s]
+  L=1.5 r=9 eta=0.009: best over theta -0.0008 at theta 0.4175  [   30 s]
+  L=1.5 r=9 eta=0.010: best over theta +0.0104 at theta 0.4175  [   40 s]
+  L=1.5 r=9 eta=0.011: best over theta +0.0131 at theta 0.4175  [   50 s]
+  L=1.5 r=9 eta=0.012: best over theta +0.0094 at theta 0.4175  [   60 s]
+  L=1.5 r=9 eta=0.013: best over theta +0.0011 at theta 0.4175  [   69 s]
+  top 3 on n = 400 (trapezoid):
+    eta 0.011 th 0.4175  M +0.0131 ( +0.6%)  main 2.1932  sw 2.1801  Phi 0.53063  Rint 3.4821  u0 0.290  1/lam 6.55
+    eta 0.010 th 0.4175  M +0.0104 ( +0.5%)  main 2.2746  sw 2.2642  Phi 0.53675  Rint 3.6377  u0 0.295  1/lam 6.61
+    eta 0.012 th 0.4175  M +0.0094 ( +0.4%)  main 2.1157  sw 2.1063  Phi 0.52432  Rint 3.3375  u0 0.284  1/lam 6.48
+    eta 0.011 th 0.4175 n=400 trap: M_12 +0.0131  (M +0.0131 ( +0.6%)  main 2.1932  sw 2.1801  Phi 0.53063  Rint 3.4821  u0 0.290  1/lam 6.55)  [   77 s]
+    eta 0.011 th 0.4175 n=400 safe: M_12 -0.2053  (M -0.2053 (-10.4%)  main 1.9747  sw 2.1801  Phi 0.50651  Rint 3.5116  u0 0.290  1/lam 6.55)  [   86 s]
+    eta 0.011 th 0.4175 n=800 trap: M_12 +0.0225  (M +0.0225 ( +1.0%)  main 2.2026  sw 2.1801  Phi 0.53167  Rint 3.4809  u0 0.290  1/lam 6.55)  [  147 s]
+    eta 0.011 th 0.4175 n=800 safe: M_12 -0.0881  (M -0.0881 ( -4.2%)  main 2.0920  sw 2.1801  Phi 0.51946  Rint 3.4959  u0 0.290  1/lam 6.55)  [  210 s]
+    eta 0.011 th 0.4175 n=1600 trap: M_12 +0.0250  (M +0.0250 ( +1.1%)  main 2.2051  sw 2.1801  Phi 0.53195  Rint 3.4805  u0 0.290  1/lam 6.55)  [  614 s]
+    eta 0.011 th 0.4175 n=1600 safe: M_12 -0.0303  (M -0.0303 ( -1.4%)  main 2.1497  sw 2.1801  Phi 0.52584  Rint 3.4881  u0 0.290  1/lam 6.55)  [  999 s]
+    Richardson (trap): differences +0.0094, +0.0025, order p = 1.91, extrapolated limit +0.0259; with p = 1: +0.0275
+    Richardson (safe): differences +0.1172, +0.0578, order p = 1.02, extrapolated limit +0.0257; with p = 1: +0.0274
+    eta 0.010 th 0.4175 n=400 trap: M_12 +0.0104  (M +0.0104 ( +0.5%)  main 2.2746  sw 2.2642  Phi 0.53675  Rint 3.6377  u0 0.295  1/lam 6.61)  [ 1007 s]
+    eta 0.010 th 0.4175 n=400 safe: M_12 -0.2180  (M -0.2180 (-10.7%)  main 2.0462  sw 2.2642  Phi 0.51280  Rint 3.6687  u0 0.295  1/lam 6.61)  [ 1015 s]
+    eta 0.010 th 0.4175 n=800 trap: M_12 +0.0208  (M +0.0208 ( +0.9%)  main 2.2850  sw 2.2642  Phi 0.53784  Rint 3.6364  u0 0.295  1/lam 6.61)  [ 1066 s]
+    eta 0.010 th 0.4175 n=800 safe: M_12 -0.0955  (M -0.0955 ( -4.4%)  main 2.1687  sw 2.2642  Phi 0.52565  Rint 3.6522  u0 0.295  1/lam 6.61)  [ 1116 s]
+    eta 0.012 th 0.4175 n=400 trap: M_12 +0.0094  (M +0.0094 ( +0.4%)  main 2.1157  sw 2.1063  Phi 0.52432  Rint 3.3375  u0 0.284  1/lam 6.48)  [ 1123 s]
+    eta 0.012 th 0.4175 n=400 safe: M_12 -0.2002  (M -0.2002 (-10.5%)  main 1.9061  sw 2.1063  Phi 0.50006  Rint 3.3655  u0 0.284  1/lam 6.48)  [ 1131 s]
+    eta 0.012 th 0.4175 n=800 trap: M_12 +0.0181  (M +0.0181 ( +0.9%)  main 2.1244  sw 2.1063  Phi 0.52534  Rint 3.3364  u0 0.284  1/lam 6.48)  [ 1180 s]
+    eta 0.012 th 0.4175 n=800 safe: M_12 -0.0878  (M -0.0878 ( -4.3%)  main 2.0186  sw 2.1063  Phi 0.51309  Rint 3.3506  u0 0.284  1/lam 6.48)  [ 1230 s]
+  L=3.0 r=15 eta=0.003: best over theta -0.1060 at theta 0.4625  [ 1238 s]
+  L=3.0 r=15 eta=0.004: best over theta -0.0377 at theta 0.4625  [ 1247 s]
+  L=3.0 r=15 eta=0.005: best over theta -0.0243 at theta 0.4625  [ 1255 s]
+  L=3.0 r=15 eta=0.006: best over theta -0.0437 at theta 0.4600  [ 1263 s]
+  L=3.0 r=15 eta=0.007: best over theta -0.0728 at theta 0.4600  [ 1271 s]
+  top 3 on n = 400 (trapezoid):
+    eta 0.005 th 0.4625  M -0.0243 ( -1.2%)  main 1.9646  sw 1.9890  Phi 0.35530  Rint 4.2749  u0 0.219  1/lam 11.43
+    eta 0.005 th 0.4600  M -0.0296 ( -1.4%)  main 2.1540  sw 2.1836  Phi 0.37060  Rint 4.2282  u0 0.214  1/lam 11.33
+    eta 0.005 th 0.4650  M -0.0333 ( -1.9%)  main 1.7665  sw 1.7998  Phi 0.33924  Rint 4.2865  u0 0.219  1/lam 11.43
+    eta 0.005 th 0.4625 n=400 trap: M_12 -0.0243  (M -0.0243 ( -1.2%)  main 1.9646  sw 1.9890  Phi 0.35530  Rint 4.2749  u0 0.219  1/lam 11.43)  [ 1279 s]
+    eta 0.005 th 0.4625 n=400 safe: M_12 -0.4490  (M -0.4490 (-29.2%)  main 1.5400  sw 1.9890  Phi 0.32038  Rint 4.3079  u0 0.219  1/lam 11.43)  [ 1286 s]
+    eta 0.005 th 0.4625 n=800 trap: M_12 +0.0144  (M +0.0144 ( +0.7%)  main 2.0034  sw 1.9890  Phi 0.35851  Rint 4.2724  u0 0.219  1/lam 11.43)  [ 1336 s]
+    eta 0.005 th 0.4625 n=800 safe: M_12 -0.2344  (M -0.2344 (-13.4%)  main 1.7546  sw 1.9890  Phi 0.33803  Rint 4.2913  u0 0.219  1/lam 11.43)  [ 1383 s]
+    eta 0.005 th 0.4625 n=1600 trap: M_12 +0.0255  (M +0.0255 ( +1.3%)  main 2.0145  sw 1.9890  Phi 0.35943  Rint 4.2717  u0 0.219  1/lam 11.43)  [ 1731 s]
+    eta 0.005 th 0.4625 n=1600 safe: M_12 -0.1014  (M -0.1014 ( -5.4%)  main 1.8876  sw 1.9890  Phi 0.34898  Rint 4.2813  u0 0.219  1/lam 11.43)  [ 2078 s]
+    Richardson (trap): differences +0.0387, +0.0111, order p = 1.80, extrapolated limit +0.0300; with p = 1: +0.0366
+    Richardson (safe): differences +0.2146, +0.1330, order p = 0.69, extrapolated limit +0.1155; with p = 1: +0.0316
+    eta 0.005 th 0.4600 n=400 trap: M_12 -0.0296  (M -0.0296 ( -1.4%)  main 2.1540  sw 2.1836  Phi 0.37060  Rint 4.2282  u0 0.214  1/lam 11.33)  [ 2085 s]
+    eta 0.005 th 0.4600 n=400 safe: M_12 -0.4411  (M -0.4411 (-25.3%)  main 1.7425  sw 2.1836  Phi 0.33689  Rint 4.2607  u0 0.214  1/lam 11.33)  [ 2093 s]
+    eta 0.005 th 0.4600 n=800 trap: M_12 +0.0073  (M +0.0073 ( +0.3%)  main 2.1909  sw 2.1836  Phi 0.37365  Rint 4.2257  u0 0.214  1/lam 11.33)  [ 2139 s]
+    eta 0.005 th 0.4600 n=800 safe: M_12 -0.2329  (M -0.2329 (-11.9%)  main 1.9507  sw 2.1836  Phi 0.35395  Rint 4.2443  u0 0.214  1/lam 11.33)  [ 2185 s]
+    eta 0.005 th 0.4650 n=400 trap: M_12 -0.0333  (M -0.0333 ( -1.9%)  main 1.7665  sw 1.7998  Phi 0.33924  Rint 4.2865  u0 0.219  1/lam 11.43)  [ 2192 s]
+    eta 0.005 th 0.4650 n=400 safe: M_12 -0.4722  (M -0.4722 (-35.6%)  main 1.3276  sw 1.7998  Phi 0.30300  Rint 4.3195  u0 0.219  1/lam 11.43)  [ 2199 s]
+    eta 0.005 th 0.4650 n=800 trap: M_12 +0.0075  (M +0.0075 ( +0.4%)  main 1.8073  sw 1.7998  Phi 0.34264  Rint 4.2840  u0 0.219  1/lam 11.43)  [ 2245 s]
+    eta 0.005 th 0.4650 n=800 safe: M_12 -0.2508  (M -0.2508 (-16.2%)  main 1.5490  sw 1.7998  Phi 0.32128  Rint 4.3029  u0 0.219  1/lam 11.43)  [ 2291 s]
+done [ 2291 s]

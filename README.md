@@ -27,7 +27,9 @@ Contents:
   the one-step thresholds 8, 11, 17 for the losses L = 1, 3/2, 3 (8, 11, 18 with the rectangle bounds) and calls the figure script (about 13 minutes).
 - `code/iterated_buchstab.py`: the recursion of Lemma 4.3 by 2-D dynamic programming (uniform grid, m up to 12); eta -> 0 self-check,
   margins at the fixed point, grid refinement n = 400, 800, 1600, one-sided (safe) cell rule; gives r_0(L) = 7, 10, 16.
-  Modes: `python iterated_buchstab.py` (all, about 10 minutes), `fine`, `safe`, `safe1600` (one-sided rule on n = 1600, about 25 minutes), `curve` (Figure 1 data).
+  Modes: `python iterated_buchstab.py` (all, about 10 minutes), `fine`, `safe`, `safe1600` (one-sided rule on n = 1600, about 25 minutes), `curve` (Figure 1 data),
+  and two planning probes for the next part: `retune` (fine retuning of r = 9 and r = 15, with Richardson extrapolation) and `whatif` (margins if the switched term had level theta_sw > 1/2).
+- `code/switch_probe.py`: a Buchstab step on the switched sequence reproduces 2 e^gamma exactly (no gain); lists the level theta_sw needed for r = 6, 9, 15.
 - `code/sieve_margin_figure.py`: draws Figure 1 from the saved curves of the two scripts above.
 - `code/check_richert_grid.py`: grid convergence of the one-step margins (cuts, Richert integral, J_lambda) at the optima, and the eta -> 0 check of the one-step identity.
 - `code/nano_sieve_probe.py`: probe of Buchstab steps on the inert primes and on the split primes (the latter gains nothing).
