@@ -130,7 +130,7 @@ Let $m\ge1$ have no inert prime factor to an odd power, and write $m=\prod_\ell\
 \[
 \Sigma(m)=\sum_{\ell\ \text{split}}\{(e_\ell-2j)c_\ell:\ 0\le j\le e_\ell\}\subseteq\Cl(-D),
 \]
-and $m$ is represented by $Q_C$ if and only if $\Sigma(m)\cap\{C,C^{-1}\}\ne\emptyset$. Let $h=3$ and let $q_0$ be a split prime in a non-principal class. If every prime factor of $m$ other than $q_0$ is split or ramified, then:
+and $m$ is represented by $Q_C$ if and only if $\Sigma(m)\cap\{C,C^{-1}\}\ne\emptyset$. Let $h=3$ and let $q_0$ be a split prime in a non-principal class. If every prime factor of $m$ other than $q_0$ is split, ramified, or inert to an even power, then:
 \begin{enumerate}[label=(\alph*)]
 \item if $q_0\parallel m$, $m$ is represented by $Q_{C_1}$ $(=Q_{C_2}$ as a set of values$)$;
 \item if $q_0^2\parallel m$, $m$ is represented by all three forms.
@@ -141,7 +141,7 @@ An ideal of norm $m$ is $\prod_\ell\fp_\ell^{j}\bar\fp_\ell^{e_\ell-j}$ times th
 \end{proof}
 For $D=23$ the primes $2$ and $3$ split and are not represented by $x^2+xy+6y^2$, so they lie in the non-principal classes. We take $q_0=2$ for odd $N$ and the least non-principal split prime $q_0\nmid N$ (so $q_0\in\{3,13,\dots\}$) for even $N$. The lemma was checked against direct representation counts for all $m\le1.1\cdot10^6$ (Section~\ref{sec:d23}). For a general class group of odd order the same argument gives the following.
 \begin{enumerate}[label=(\alph*),start=3]
-\item Let $\Cl(-D)\cong\bigoplus_{i=1}^s\Z/n_i$ ($n_i$ odd), and let $q_i$ be split primes whose ideal classes $c_i$ generate the $i$-th summand. If $\prod_iq_i^{n_i-1}\parallel m$ and every other prime factor of $m$ is split or ramified, then $m$ is represented by every form. Indeed $\{(n_i-1-2j)c_i:0\le j\le n_i-1\}$ has $n_i$ elements spaced by $2c_i$. Since $n_i$ is odd, $2$ is invertible modulo $n_i$, so these are all of $\langle c_i\rangle$. The sum over $i$ is the whole group, and adding the class of the remaining ideal changes nothing.
+\item Let $\Cl(-D)\cong\bigoplus_{i=1}^s\Z/n_i$ ($n_i$ odd), and let $q_i$ be split primes whose ideal classes $c_i$ generate the $i$-th summand. If $\prod_iq_i^{n_i-1}\parallel m$ and every other prime factor of $m$ is split, ramified, or inert to an even power, then $m$ is represented by every form. Indeed $\{(n_i-1-2j)c_i:0\le j\le n_i-1\}$ has $n_i$ elements spaced by $2c_i$. Since $n_i$ is odd, $2$ is invertible modulo $n_i$, so these are all of $\langle c_i\rangle$. The sum over $i$ is the whole group, and adding the class of the remaining ideal changes nothing.
 \end{enumerate}
 The cost is $\sum_i(n_i-1)\le h-1$ prime factors; it is $h-1$ for a cyclic group.
 
@@ -160,7 +160,7 @@ for each character $\eta$ modulo $D$. Here $\Lambda_\psi(n)=\sum_{{\rm N}\fa=n}\
 
 \emph{Large moduli.} Reduce to primitive $\xi$ modulo $k_1\mid k$ in the standard way \cite[Ch.~28]{Davenport}, at a cost of $(\log x)^2$. Apply Vaughan's identity to $-L'/L(s,\psi)$ with parameters $U=V=(\log x)^{C}$. The coefficients $c_\psi$, $\mu_\psi$ (of $1/L(s,\psi)$) and $\Lambda_\psi$ are bounded by $\tau(n)\log n$.
 
-The \emph{bilinear} terms $\sum_{U<m\le x/V}\sum_n\alpha_m\beta_n\xi\eta(mn)\Phi(mn/x)$ are separated with a Mellin transform of $\Phi$ and estimated by the classical large sieve, $\sum_{k_1\le Q_1}\frac{k_1}{\phi(k_1)}\sum^*_\xi|\sum_{n\le X}b_n\xi(n)|^2\ll(Q_1^2+X)\sum|b_n|^2$. As in \cite[Ch.~28]{Davenport} they contribute $\ll(x/Q_1+Q_1x^{1/2}+xU^{-1/2}+xV^{-1/2})(\log x)^{c}$ to the dyadic block $k_1\sim Q_1$ of \eqref{eq:bvpsi}.
+The \emph{bilinear} terms $\sum_{U<m\le x/V}\sum_n\alpha_m\beta_n\xi\eta(mn)\Phi(mn/x)$ are separated with a Mellin transform of $\Phi$ and estimated by the classical large sieve, $\sum_{k_1\le Q_1}\frac{k_1}{\phi(k_1)}\sum^*_\xi|\sum_{n\le X}b_n\xi(n)|^2\ll(Q_1^2+X)\sum|b_n|^2$. As in \cite[Ch.~28]{Davenport} they contribute $\ll(x/Q_1+Q_1x^{1/2}+xU^{-1/2}+xV^{-1/2})(\log x)^{c}$ to the dyadic block $k_1\sim Q_1$ of \eqref{eq:bvpsi}; for $Q_1\le(\log x)^{B}$ the zero-free region above is used instead of the large sieve. (In Vaughan's identity the bilinear coefficients are supported on $m>U$ and $n>V$, so $mn\le x$ forces $m\le x/V$ and nothing is left over.)
 
 The \emph{linear} terms are $\sum_{m\le UV}\alpha_m\sum_nc_\psi(n)(\log n)^j\xi\eta(n)\Phi(mn/x)$, $j\in\{0,1\}$. By Mellin inversion the inner sum is
 \[
@@ -188,7 +188,7 @@ and write $X$ for its total weight. Every $m\in\cA$ is prime to $M_0$ and has $\
 For $\ell\nmid M_0N$ the density of $\ell\mid m$ is $g(\ell)=1/(\ell-1)$. By Theorem~\ref{thm:bv} (or the classical theorem when $p$ is arbitrary), $\cA$ has level of distribution $N^{1/2-\e}$. Both sifting sets have dimension $\kappa=\frac12$.
 
 \subsection{Survivors}
-Let $m\in\cA$ have no prime factor in $\cP_1\cup\cP_3$. A prime $\ell\mid N$ can divide $m$ only if $\ell=p$, which we exclude. If $m$ has no inert factor, it is a product of split primes $\ge z_1$, and $q_0^am$ is represented by $Q_C$ by Lemma~\ref{lem:cover} ($h=1$: every such $m$ is a norm). Otherwise $m$ has inert factors $\ge N^\theta$, at most three of them since $4\theta>1$, and an even number since $\chi(m)=1$. So $m=q_1q_2r$ with inert $q_1\le q_2$ and $r$ a product of split primes $\ge z_1$. If $q_1=q_2$, then $m$ is again a norm. Let $\cE$ be the set of $n=q_1q_2r<N/q_0^a$ with $q_1<q_2$; these are the \emph{bad} survivors.
+Let $m\in\cA$ have no prime factor in $\cP_1\cup\cP_3$. A prime $\ell\mid N$ can divide $m$ only if $\ell=p$, which we exclude. If $m$ has no inert factor, it is a product of split primes $\ge z_1$, and $q_0^am$ is represented by $Q_C$ by Lemma~\ref{lem:cover} ($h=1$: every such $m$ is a norm). Otherwise $m$ has inert factors $\ge N^\theta$, at most three of them since $4\theta>1$, and an even number since $\chi(m)=1$. So $m=q_1q_2r$ with inert $q_1\le q_2$ and $r$ a product of split primes $\ge z_1$. If $q_1=q_2$, the ideal $(q_1)$ is principal, so $\Sigma(m)$ is unchanged and $q_0^am$ is again represented by $Q_C$ by Lemma~\ref{lem:cover}; such $m$ are $O(N^{1-\theta})$ in any case. Let $\cE$ be the set of $n=q_1q_2r<N/q_0^a$ with $q_1<q_2$; these are the \emph{bad} survivors.
 
 \subsection{The sieve functions}
 For $\kappa=\frac12$ (sifting limit $\beta=1$) the functions of the $\beta$-sieve are \cite{Iw76},\cite[Ch.~14]{FI}
@@ -224,7 +224,7 @@ If $m<N$ is a product of split primes $\ge z_1$ with $w(m)>0$, then $\lambda(\Om
 \begin{equation}\label{eq:wr}
 w(q_1q_2r)=1-\lambda\Bigl(k-\frac v{u_0}\Bigr).
 \end{equation}
-The weight $w_+$ depends only on $r$. In the bilinear decomposition of $\{N-q_0^a(q_1r)q_2\}$ it is part of the bounded coefficient of $q_1r$, so the Bombieri--Vinogradov theorem for convolutions applies unchanged. The terms $\ell\mid m$ are bounded by the upper vector sieve $\lambda_1^+\lambda_3^+$ on $\cA_\ell$, at level $N^{1/2-\e}/\ell$.
+The weight $w_+$ depends only on $r$. In the bilinear decomposition of $\{N-q_0^a(q_1r)q_2\}$ it is part of the bounded coefficient of $q_1r$, so the Bombieri--Vinogradov theorem for convolutions applies unchanged. (Three routine points: the smooth weight $\Phi(1-q_0^an/N)$ is a function of the product $n=(q_1r)q_2$ and is removed by partial summation; the condition $q_1<q_2$ is made separable by splitting $q_1$ and $q_2$ into ranges $(N^{a},N^{a+\delta}]$, the diagonal ranges changing $J_\lambda$ by $O(\delta)$; and $q_1<q_2$ with $q_1q_2\le N$ gives $q_1<N^{1/2}$, where the range $q_1>N^{1/2-\e}$ changes $J_\lambda$ by $O(\e)$.) The terms $\ell\mid m$ are bounded by the upper vector sieve $\lambda_1^+\lambda_3^+$ on $\cA_\ell$, at level $N^{1/2-\e}/\ell$.
 
 \subsection{Normalisation and the criterion}
 \begin{lemma}\label{lem:norm}
@@ -507,7 +507,7 @@ The sieve inequality is optimized numerically at first order, as in Chen-type nu
 \bibitem{Iw72} H. Iwaniec, Primes of the type $\phi(x,y)+A$ where $\phi$ is a quadratic form, Acta Arith. 21 (1972), 203--234.
 \bibitem{Iw76} H. Iwaniec, The half dimensional sieve, Acta Arith. 29 (1976), 69--95.
 \bibitem{Motohashi} Y. Motohashi, An induction principle for the generalization of Bombieri's prime number theorem, Proc. Japan Acad. 52 (1976), 273--275.
-\bibitem{NX} R. Nath, Y. Xie, Almost primes and primes that are sums of two squares plus 1, arXiv:2501.16723.
+\bibitem{NX} R. Nath, Y. Xie, Almost primes and primes that are sums of two squares plus 1, arXiv:2501.16723 (2025).
 \bibitem{Wilson} R. J. Wilson, The large sieve in algebraic number fields, Mathematika 16 (1969), 189--204.
 \end{thebibliography}
 \end{document}

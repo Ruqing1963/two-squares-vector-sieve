@@ -145,7 +145,9 @@ ax[0].set_title(r"$m=N-p$ represented by some form, $p\in C_0\cup C_1$"); ax[0].
 for (a, b), v in W.items():
     ax[1].plot(np.array(NS) - 10**6, v, ".", ms=3, label=r"$p\in C_%d$, $N-p=Q_{C_%d}$" % (a, b))
 ax[1].set_xlabel(r"$N-10^6$"); ax[1].set_ylabel(r"count with $\Omega(N-p)\leq3$")
-ax[1].set_title(r"$D=23$: class pairs, $N\in[10^6,10^6+400)$ even"); ax[1].legend(frameon=False, fontsize=8, markerscale=3)
+ax[1].set_title(r"$D=23$: class pairs, $N\in[10^6,10^6+400)$ even")
+ax[1].set_ylim(top=1.22 * max(max(v) for v in W.values()))     # room for the legend above the points
+ax[1].legend(loc="upper right", ncol=2, frameon=True, facecolor="white", framealpha=0.9, edgecolor="none", fontsize=8, markerscale=3)
 ax[1].ticklabel_format(axis="x", style="plain", useOffset=False)
 fig.tight_layout()
 fig.savefig(os.path.join(FIG, "d23_classes.pdf")); fig.savefig(os.path.join(FIG, "d23_classes.png"), dpi=150)
